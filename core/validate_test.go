@@ -3,10 +3,10 @@ package core
 import (
 	"testing"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers"
 	"github.com/stretchr/testify/require"
 )
 

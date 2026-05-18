@@ -3,10 +3,10 @@ package testing
 import (
 	"testing"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/logger"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/logger"
 )
 
 // CreateGenerateContext creates a new GenerateContext for testing purposes

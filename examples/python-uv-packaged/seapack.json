@@ -1,5 +1,5 @@
 {
-  "$schema":"https://schema.railpack.com",
+  "$schema":"https://seapack.sealos.io/schema.json",
   "deploy": {
     "startCommand": "python-uv-packaged"
   }

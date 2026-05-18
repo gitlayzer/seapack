@@ -1,22 +1,21 @@
-# Railpack
+# SeaPack
 
-[![CI](https://github.com/railwayapp/railpack/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/railwayapp/railpack/actions/workflows/unit-tests.yml)
-[![Run Tests](https://github.com/railwayapp/railpack/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/railwayapp/railpack/actions/workflows/integration-tests.yml)
+[![CI](https://github.com/gitlayzer/seapack/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/gitlayzer/seapack/actions/workflows/unit-tests.yml)
+[![Run Tests](https://github.com/gitlayzer/seapack/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/gitlayzer/seapack/actions/workflows/integration-tests.yml)
 
-Railpack is a tool for building images from source code with minimal
-configuration. It is the successor to [Nixpacks](https://nixpacks.com) and
-incorporates many of the learnings from running Nixpacks in production at
-[Railway](https://railway.com) for several years.
+SeaPack is a Sealos-oriented tool for building runnable container images from
+source code with minimal configuration. It focuses on the core languages used
+by Sealos app workloads: Node.js, Python, Go, Java, and Deno.
 
 ## Getting Started
 
 ```bash
-# Install mise & railpack
+# Install mise & seapack
 curl -sSL https://mise.run | sh
-mise install github:railwayapp/railpack@latest
+mise install github:gitlayzer/seapack@latest
 
-# start BuildKit container & let railpack know about it
-docker run --rm --privileged -d --name buildkit moby/buildkit
+# start BuildKit container & let seapack know about it
+docker run --rm --privileged -d --name buildkit ghcr.io/gitlayzer/seapack-buildkit:latest
 export BUILDKIT_HOST='docker-container://buildkit'
 
 # create a Next.js app
@@ -24,23 +23,23 @@ npm create next-app@latest my-app
 cd my-app
 
 # build and run the app!
-railpack build .
+seapack build .
 docker run -p 3000:3000 -it my-app
 ```
 
-Railpack automatically detects the project type (Next.js, in this case, but many languages & frameworks are supported!) and generates an optimized
-container image.
+SeaPack automatically detects the project type, generates an optimized build
+plan, and builds a container image with the unified SeaPack base images.
 
-**Note:** The above steps are for running Railpack locally to experiment and
-test. If you deploy on [Railway](https://railway.com), Railpack
-runs automatically when you push changes to your repository.
+**Note:** The above steps are for running SeaPack locally to experiment and
+test. In a Sealos build pipeline, SeaPack is intended to run as the app image
+builder behind the deployment flow.
 
 ## Documentation
 
-Full documentation for both operators (platforms, like Railway) and users (developers using Railpack to build their applications) is available at
-[railpack.com](https://railpack.com).
+SeaPack documentation is written for Sealos operators and developers who need a
+small, predictable source-to-image builder for Sealos workloads.
 
 ## Contributing
 
-Railpack is open source and open to contributions. See the
+SeaPack is open source and open to contributions. See the
 [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.

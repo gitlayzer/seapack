@@ -1,15 +1,15 @@
 ---
-title: Running Railpack in Production
-description: Learn how to run Railpack in production as a platform
+title: Running SeaPack in Production
+description: Learn how to run SeaPack in production as a platform
 ---
 
-This guide walks through running Railpack in production as a platform
-(like Railway). This guide is not intended for end users using Railpack to
+This guide walks through running SeaPack in production as a platform
+(like Sealos). This guide is not intended for end users using SeaPack to
 containerize their applications.
 
 ## CLI vs Frontend
 
-Railpack can build using the CLI or through a custom BuildKit frontend. **It is
+SeaPack can build using the CLI or through a custom BuildKit frontend. **It is
 highly recommended to use the frontend in production**. To build, the CLI simply
 creates a BuildKit client and pipes the result into `docker load` and is not
 something designed or optimized to be used with high throughput. The CLI is
@@ -23,23 +23,23 @@ building. It will
 
 - Output the build result to stdout (this shows users what will happen in the
   build)
-- Save the build plan to a file (e.g. `railpack.json`)
-- Save the build info to a `railpack-info.json` file
+- Save the build plan to a file (e.g. `seapack.json`)
+- Save the build info to a `seapack-info.json` file
 
 The build plan is used by the frontend to build the app. The build info can be
 used by the platform to gain insights into the app being built (e.g. the
 provider detected, versions installed, app metadata, etc.).
 
 ```sh
-railpack prepare /dir/to/build --plan-out railpack-plan.json --info-out railpack-info.json
+seapack prepare /dir/to/build --plan-out seapack-plan.json --info-out seapack-info.json
 ```
 
-![railpack prepare command](../images/railpack-prepare.png)
+![seapack prepare command](../images/seapack-prepare.png)
 
 ## Building with BuildKit
 
-Each version of Railpack includes a BuildKit frontend available as an [image on
-ghcr](https://github.com/railwayapp/railpack/pkgs/container/railpack-frontend).
+Each version of SeaPack includes a BuildKit frontend available as an image on
+Docker Hub: `ghcr.io/gitlayzer/seapack-frontend`.
 It is recommended to use the same version of the frontend that was used to
 generate the build plan.
 
@@ -50,8 +50,8 @@ need to be in the same directory as the app being built).
 
 ```sh
 docker buildx build \
-  --build-arg BUILDKIT_SYNTAX="ghcr.io/railwayapp/railpack-frontend" \
-  -f /path/to/railpack-plan.json \
+  --build-arg BUILDKIT_SYNTAX="ghcr.io/gitlayzer/seapack-frontend" \
+  -f /path/to/seapack-plan.json \
   /path/to/app/to/build
 ```
 
@@ -60,15 +60,15 @@ Alternatively, you can build with BuildKit directly.
 ```sh
 buildctl build \
   --local context=/path/to/app/to/build \
-  --local dockerfile=/path/to/dir/containing/railpack-plan.json \
+  --local dockerfile=/path/to/dir/containing/seapack-plan.json \
   --frontend=gateway.v0 \
-  --opt source=ghcr.io/railwayapp/railpack-frontend \
+  --opt source=ghcr.io/gitlayzer/seapack-frontend \
   --output type=docker,name=test
 ```
 
 Building with the Docker or BuildKit command is useful because you can pass any
 additional flags you want to the build, without them having to be supported by
-the Railpack CLI.
+the SeaPack CLI.
 
 ## Secrets
 
@@ -76,7 +76,7 @@ The secrets that are available to commands in the build must be specified in the
 build plan. You can pass secrets to the `prepare` command with the `--env` flag.
 
 ```sh
-railpack prepare /dir/to/build --env STRIPE_LIVE_KEY=sk_live_asdf
+seapack prepare /dir/to/build --env STRIPE_LIVE_KEY=sk_live_asdf
 ```
 
 These secrets can be used to configure the plan, but the names will also be
@@ -89,8 +89,8 @@ build secrets](https://docs.docker.com/build/building/secrets/).
 
 ```sh
 STRIPE_LIVE_KEY=asdfasdf docker build \
-  --build-arg BUILDKIT_SYNTAX="ghcr.io/railwayapp/railpack-frontend" \
-  -f /path/to/railpack-plan.json \
+  --build-arg BUILDKIT_SYNTAX="ghcr.io/gitlayzer/seapack-frontend" \
+  -f /path/to/seapack-plan.json \
   --secret id=STRIPE_LIVE_KEY,env=STRIPE_LIVE_KEY \
   /path/to/app/to/build
 ```
@@ -101,8 +101,8 @@ through the `--secret` flag._
 ### Layer invalidation
 
 By default, layers will not be invalidated when a secret value changes. To get
-around this, Railpack uses a hash of the secret values and mounts this as a file
-in the layer. When using the Railpack CLI to build, this happens automatically,
+around this, SeaPack uses a hash of the secret values and mounts this as a file
+in the layer. When using the SeaPack CLI to build, this happens automatically,
 but if you are using the frontend directly, calculate the hash yourself and pass
 it as a build arg.
 
@@ -123,7 +123,7 @@ key will be prefixed to all mount cache IDs used.
 
 ## Full example
 
-This is a small script that will build an app using the Railpack frontend.
+This is a small script that will build an app using the SeaPack frontend.
 
 ```sh
 #!/bin/bash
@@ -131,15 +131,15 @@ This is a small script that will build an app using the Railpack frontend.
 APP_DIR=my-app
 
 # Prepare the app and generate the build plan
-railpack prepare $APP_DIR --plan-out ./railpack-plan.json --info-out ./railpack-info.json
+seapack prepare $APP_DIR --plan-out ./seapack-plan.json --info-out ./seapack-info.json
 
 # Compute the hash of the secret values
 secrets_hash=$(echo -n "STRIPE_LIVE_KEY=sk_live_asdf" | sha256sum | awk '{print $1}')
 
-# Build with BuildKit and the Railpack frontend
+# Build with BuildKit and the SeaPack frontend
 docker buildx build \
-  --build-arg BUILDKIT_SYNTAX="ghcr.io/railwayapp/railpack-frontend" \
-  -f ./railpack-plan.json \
+  --build-arg BUILDKIT_SYNTAX="ghcr.io/gitlayzer/seapack-frontend" \
+  -f ./seapack-plan.json \
   --build-arg secrets-hash=$secrets_hash \
   --output type=docker,name=test \
   $APP_DIR

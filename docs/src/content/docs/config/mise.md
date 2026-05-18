@@ -3,24 +3,24 @@ title: Mise Configuration
 description: How to customize your image using Mise configuration
 ---
 
-Railpack is built on top of [Mise](https://mise.jdx.dev/). You can use the various mise configuration options
-to customize the Railpack-generated image. For instance, you can set environment variables, allow precompiled
-ruby versions, and add additional utilities like `jq` to your image all through the mise configuration toml.
+SeaPack is built on top of [Mise](https://mise.jdx.dev/). You can use the various mise configuration options
+to customize the SeaPack-generated image. For instance, you can set environment variables, pin language
+versions, and add additional utilities like `jq` to your image all through the mise configuration toml.
 
 ## Philosophy
 
 * We use the latest mise version. There is automated tooling setup to ensure
-  the mise version on the latest Railpack version is no more than a couple weeks
+  the mise version on the latest SeaPack version is no more than a couple weeks
   out of date.
-* Railpack assumes the default Mise configuration options. For instance, we won't
-  opt-in users to precompiled ruby ahead of when mise has scheduled it to become default.
-* Railpack generates global mise configuration based on analyizing the application
+* SeaPack assumes the default Mise configuration options unless a Sealos build
+  requirement needs a stricter default.
+* SeaPack generates global mise configuration based on analyizing the application
   source code. However, this global configuration is set in `/etc/mise/config.toml`
   so it can easily be overwritten in your application.
 
 ## Default Settings
 
-Railpack sets the following mise settings by default in the generated
+SeaPack sets the following mise settings by default in the generated
 `/etc/mise/config.toml`. These can be overridden in your own `mise.toml`.
 
 | Setting | Value | Reason |
@@ -33,12 +33,12 @@ Railpack sets the following mise settings by default in the generated
 
 ## Customization
 
-Use a mise configuration file or environment variables to customize mise in the Railpack-generated container.
+Use a mise configuration file or environment variables to customize mise in the SeaPack-generated container.
 Configuration files are generally a better idea.
 
 ### Configuration Files
 
-Railpack automatically detects mise configuration files and passes them
+SeaPack automatically detects mise configuration files and passes them
 into the build. This includes:
 
 - **Config files**: `mise.toml`, `.mise.toml`, `mise/config.toml`,
@@ -52,15 +52,12 @@ into the build. This includes:
 - **Lock files**: `mise.lock` files co-located with any detected
   `*.toml` config
 
-### Example: Precompiled Ruby
+### Example: Additional Tools
 
-To opt-in to non-default features like precompiled Ruby, add a
-`mise.toml` to your repository:
+To add tools that your build needs, add a `mise.toml` to your repository:
 
 ```toml
 [tools]
-ruby = "3"
-
-[settings]
-ruby.compile = false
+node = "22"
+jq = "latest"
 ```

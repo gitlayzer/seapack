@@ -5,11 +5,11 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core/mise"
+	"github.com/gitlayzer/seapack/core/mise"
 )
 
 const (
-	DefaultSource = "railpack default"
+	DefaultSource = "SeaPack default"
 )
 
 type Resolver struct {

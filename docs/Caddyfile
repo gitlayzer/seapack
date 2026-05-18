@@ -9,7 +9,7 @@
 	}
 
 	servers {
-		trusted_proxies static private_ranges 100.0.0.0/8 # trust railway's proxy
+		trusted_proxies static private_ranges 100.0.0.0/8 # trust sealos's proxy
 	}
 }
 
@@ -45,7 +45,7 @@
 		hide .env*
 	}
 
-	redir /install.sh https://raw.githubusercontent.com/railwayapp/railpack/refs/heads/main/install.sh 301
+	redir /install.sh https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/install.sh 301
 
 	file_server
 

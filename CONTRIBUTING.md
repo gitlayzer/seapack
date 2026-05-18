@@ -1,4 +1,4 @@
-# Contributing to Railpack
+# Contributing to SeaPack
 
 ## Project Status
 
@@ -21,7 +21,7 @@ make superficial changes.
 ## Setup
 
 We use [Mise](https://mise.jdx.dev/) for managing language dependencies and
-tasks for building and testing Railpack.
+tasks for building and testing SeaPack.
 
 To set up your local environment, follow these steps:
 
@@ -39,7 +39,7 @@ mise run setup
 
 ### Snapshot Tests
 
-Railpack uses [go-snaps](https://github.com/gkampitakis/go-snaps) for snapshot
+SeaPack uses [go-snaps](https://github.com/gkampitakis/go-snaps) for snapshot
 testing. This helps prevent regressions to generated build plans.
 
 If you see a test failure because of a snapshot change, please confirm that the
@@ -60,7 +60,7 @@ mise run test-integration
 
 The `test.json` file contains an array of build configurations and expected
 outputs. See [this
-file](https://github.com/railwayapp/railpack/blob/main/integration_tests/run_test.go#L26)
+file](https://github.com/gitlayzer/seapack/blob/main/integration_tests/run_test.go#L26)
 for the schema.
 
 ## Useful Commands

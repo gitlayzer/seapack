@@ -1,12 +1,12 @@
 ---
 title: BuildKit LLB Generation
-description: Understanding how Railpack generates BuildKit LLB definitions
+description: Understanding how SeaPack generates BuildKit LLB definitions
 ---
 
-Railpack takes the build plan and generates a BuildKit LLB definition using the
+SeaPack takes the build plan and generates a BuildKit LLB definition using the
 [LLB Go API](https://github.com/moby/buildkit#exploring-llb). The LLB is then
-either [sent to the BuildKit daemon](/guides/building-with-cli) or [used by a
-custom frontend](/guides/custom-frontend).
+either sent to the BuildKit daemon by the CLI or used by the
+[BuildKit frontend](/reference/frontend).
 
 Generating LLB directly instead of transpiling the plan into a Dockerfile has
 several advantages:

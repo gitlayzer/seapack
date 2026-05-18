@@ -1,9 +1,9 @@
 ---
 title: Java
-description: Building Java applications with Railpack
+description: Building Java applications with SeaPack
 ---
 
-Railpack builds and deploys Java (including Spring Boot) applications built with Gradle or Maven.
+SeaPack builds and deploys Java (including Spring Boot) applications built with Gradle or Maven.
 
 ## Detection
 
@@ -17,7 +17,7 @@ met:
 
 The Java version is determined in the following order:
 
-- Set via the `RAILPACK_JDK_VERSION` environment variable
+- Set via the `SEAPACK_JDK_VERSION` environment variable
 - If the project uses Gradle <= 5, Java 8 is used
 - Defaults to `21`
 
@@ -25,8 +25,8 @@ The Java version is determined in the following order:
 
 | Variable                  | Description                 | Example |
 | ------------------------- | --------------------------- | ------- |
-| `RAILPACK_JDK_VERSION`    | Override the JDK version    | `17`    |
-| `RAILPACK_GRADLE_VERSION` | Override the Gradle version | `8.5`   |
+| `SEAPACK_JDK_VERSION`    | Override the JDK version    | `17`    |
+| `SEAPACK_GRADLE_VERSION` | Override the Gradle version | `8.5`   |
 
 ## BuildKit Caching
 

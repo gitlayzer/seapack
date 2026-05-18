@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/moby/buildkit/client/llb"
-	"github.com/railwayapp/railpack/core/plan"
 )
 
 // GetStateForLayer returns the llb.State for a given layer not including any filters (include/exclude)
@@ -90,7 +90,7 @@ func (g *BuildGraph) getMergeState(layers []plan.Layer) llb.State {
 		mergeNames = append(mergeNames, input.DisplayName())
 	}
 
-	return llb.Merge(mergeStates, llb.WithCustomNamef("[railpack] merge %s", strings.Join(mergeNames, ", ")))
+	return llb.Merge(mergeStates, llb.WithCustomNamef("[seapack] merge %s", strings.Join(mergeNames, ", ")))
 }
 
 // copyLayerPaths copies paths from srcState to destState, applying the given filter.

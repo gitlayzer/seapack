@@ -1,6 +1,6 @@
 ---
 title: Secrets and Environment Variables
-description: How Railpack handles secrets and environment variables
+description: How SeaPack handles secrets and environment variables
 ---
 
 Build secrets and environment variables are treated separately. The main
@@ -51,7 +51,7 @@ secrets are available to every command as environment variables, only the ones
 listed in a step's `secrets` array will trigger a cache invalidation if
 modified.
 
-Under the hood, Railpack uses [BuildKit secrets
+Under the hood, SeaPack uses [BuildKit secrets
 mounts](https://docs.docker.com/build/building/secrets/) to supply an exec
 command with the secret value as an environment variable.
 
@@ -92,39 +92,39 @@ flag. The names of these variables will be added to the build plan as secrets.
 
 #### CLI Build
 
-If building with [the CLI](/guides/building-with-cli), Railpack will check that
+If building with the CLI, SeaPack will check that
 all the secrets defined in the build plan have variables.
 
 ```bash
-railpack build --env STRIPE_LIVE_KEY=sk_live_asdf
+seapack build --env STRIPE_LIVE_KEY=sk_live_asdf
 ```
 
 #### Custom Frontend
 
-If building with a [custom frontend](/guides/building-with-custom-frontends),
+If building with the [BuildKit frontend](/reference/frontend),
 you should still provide the secrets when generating the plan with `--env`. This
 adds the secrets to the build plan. You then need to pass the secrets to Docker
 or BuildKit with the `--secret` flag.
 
 ```bash
 # Generate a build plan
-railpack plan --env STRIPE_LIVE_KEY=sk_live_asdf --out test/railpack-plan.json
+seapack plan --env STRIPE_LIVE_KEY=sk_live_asdf --out test/seapack-plan.json
 
 # Build with the custom frontend
 STRIPE_LIVE_KEY=asdf123456789 docker build \
-  --build-arg BUILDKIT_SYNTAX="ghcr.io/railwayapp/railpack:railpack-frontend" \
-  -f test/railpack-plan.json \
+  --build-arg BUILDKIT_SYNTAX="ghcr.io/gitlayzer/seapack-frontend" \
+  -f test/seapack-plan.json \
   --secret id=STRIPE_LIVE_KEY,env=STRIPE_LIVE_KEY \
   --build-arg secrets-hash=asdfasdf \
   examples/node-bun
 ```
 
-For more information about running Railpack in production, see the [Running
-Railpack in Production](/guides/running-railpack-in-production) guide.
+For more information about running SeaPack in production, see the [Running
+SeaPack in Production](/guides/running-seapack-in-production) guide.
 
 ### Layer Invalidation
 
 By default, BuildKit will not invalidate a layer if a secret is changed. To get
-around this, Railpack uses a hash of the secret values and mounts this as a file
+around this, SeaPack uses a hash of the secret values and mounts this as a file
 in the layer. This will bust the layer cache if the secret is changed. Pass the
 secret hash to BuildKit with the `--build-arg secrets-hash=<hash>` flag.

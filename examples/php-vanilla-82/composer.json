@@ -1,5 +1,5 @@
 {
-  "name": "railpack/php-vanilla-82",
+  "name": "seapack/php-vanilla-82",
   "require": {
     "php": "^8.2"
   }

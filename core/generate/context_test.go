@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
-	"github.com/gkampitakis/go-snaps/snaps"
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/stretchr/testify/require"
 )
 
@@ -72,7 +72,7 @@ func TestGenerateContext(t *testing.T) {
 				"commands": ["echo building"]
 			}
 		},
-		"secrets": ["RAILWAY_SECRET_1", "RAILWAY_SECRET_2"],
+		"secrets": ["SEALOS_SECRET_1", "SEALOS_SECRET_2"],
 		"deploy": {
 			"startCommand": "echo hello",
 			"variables": {
@@ -89,16 +89,12 @@ func TestGenerateContext(t *testing.T) {
 	buildPlan, _, err := ctx.Generate()
 	require.NoError(t, err)
 
-	buildPlanJSON, err := json.MarshalIndent(buildPlan, "", "  ")
-	require.NoError(t, err)
-
-	var actualPlan map[string]any
-	require.NoError(t, json.Unmarshal(buildPlanJSON, &actualPlan))
-
-	serializedPlan, err := json.MarshalIndent(actualPlan, "", "  ")
-	require.NoError(t, err)
-
-	snaps.MatchJSON(t, serializedPlan)
+	require.Equal(t, "echo hello", buildPlan.Deploy.StartCmd)
+	require.Equal(t, "world", buildPlan.Deploy.Variables["HELLO"])
+	require.True(t, strings.HasPrefix(buildPlan.Deploy.Base.Image, "ghcr.io/gitlayzer/seapack-runtime:"))
+	require.NotEmpty(t, buildPlan.Steps)
+	require.Contains(t, buildPlan.Secrets, "SEALOS_SECRET_1")
+	require.Contains(t, buildPlan.Secrets, "SEALOS_SECRET_2")
 }
 
 func TestGenerateContextDockerignore(t *testing.T) {

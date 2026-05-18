@@ -24,7 +24,7 @@
   "inputs": [
    {
     "include": [
-     "/railpack/caddy"
+     "/seapack/caddy"
     ],
     "step": "packages:caddy"
    },
@@ -71,7 +71,7 @@
    ],
    "inputs": [
     {
-     "image": "ghcr.io/railwayapp/railpack-builder:mise-2026.3.17"
+     "image": "ghcr.io/gitlayzer/seapack-builder:mise-2026.3.17"
     }
    ],
    "name": "packages:mise",
@@ -148,18 +148,18 @@
   {
    "commands": [
     {
-     "cmd": "mise install-into caddy@2.11.2 /railpack/caddy"
+     "cmd": "mise install-into caddy@2.11.2 /seapack/caddy"
     },
     {
-     "path": "/railpack/caddy"
+     "path": "/seapack/caddy"
     },
     {
-     "path": "/railpack/caddy/bin"
+     "path": "/seapack/caddy/bin"
     }
    ],
    "inputs": [
     {
-     "image": "ghcr.io/railwayapp/railpack-builder:mise-2026.3.17"
+     "image": "ghcr.io/gitlayzer/seapack-builder:mise-2026.3.17"
     }
    ],
    "name": "packages:caddy",
@@ -169,7 +169,7 @@
   },
   {
    "assets": {
-    "Caddyfile": "# global options\n{\n\tadmin off\n\tpersist_config off\n\tauto_https off\n\n\tlog {\n\t\tformat json\n\t}\n\n\tservers {\n\t\ttrusted_proxies static private_ranges 100.0.0.0/8 # trust railway's proxy\n\t}\n}\n\n# site block, listens on the $PORT environment variable, automatically assigned by railway\n:{$PORT:80} {\n\tlog {\n\t\tformat json\n\t}\n\n\trespond /health 200\n\n\t# Security headers\n\theader {\n\t\t# Prevent some browsers from MIME-sniffing a response away from the declared Content-Type\n\t\tX-Content-Type-Options \"nosniff\"\n\t\t# Remove Server header\n\t\t-Server\n\t}\n\n\t# serve from the 'dist' folder (Vite builds into the 'dist' folder)\n\troot * /app/build\n\n\t# Handle static files\n\tfile_server {\n\t\thide .git\n\t\thide .env*\n\t}\n\n\t# Compression with more formats\n\tencode {\n\t\tgzip\n\t\tzstd\n\t}\n\n\t# Try files with HTML extension and handle SPA routing\n\ttry_files {path} {path}.html {path}/index.html /index.html\n}\n"
+    "Caddyfile": "# global options\n{\n\tadmin off\n\tpersist_config off\n\tauto_https off\n\n\tlog {\n\t\tformat json\n\t}\n\n\tservers {\n\t\ttrusted_proxies static private_ranges 100.0.0.0/8 # trust sealos's proxy\n\t}\n}\n\n# site block, listens on the $PORT environment variable, automatically assigned by sealos\n:{$PORT:80} {\n\tlog {\n\t\tformat json\n\t}\n\n\trespond /health 200\n\n\t# Security headers\n\theader {\n\t\t# Prevent some browsers from MIME-sniffing a response away from the declared Content-Type\n\t\tX-Content-Type-Options \"nosniff\"\n\t\t# Remove Server header\n\t\t-Server\n\t}\n\n\t# serve from the 'dist' folder (Vite builds into the 'dist' folder)\n\troot * /app/build\n\n\t# Handle static files\n\tfile_server {\n\t\thide .git\n\t\thide .env*\n\t}\n\n\t# Compression with more formats\n\tencode {\n\t\tgzip\n\t\tzstd\n\t}\n\n\t# Try files with HTML extension and handle SPA routing\n\ttry_files {path} {path}.html {path}/index.html /index.html\n}\n"
    },
    "commands": [
     {
@@ -203,7 +203,7 @@
    ],
    "inputs": [
     {
-     "image": "ghcr.io/railwayapp/railpack-runtime:mise-2026.3.17"
+     "image": "ghcr.io/gitlayzer/seapack-runtime:mise-2026.3.17"
     }
    ],
    "name": "packages:apt:runtime"

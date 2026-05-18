@@ -3,13 +3,13 @@ package config
 import (
 	"encoding/json"
 
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/internal/utils"
 	"github.com/invopop/jsonschema"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/internal/utils"
 )
 
 const (
-	SchemaUrl = "https://schema.railpack.com"
+	SchemaUrl = "https://seapack.sealos.io/schema.json"
 )
 
 type DeployConfig struct {

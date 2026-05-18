@@ -1,0 +1,36 @@
+[
+  {
+    "expectedOutput": [
+      "Custom Install",
+      "Custom Build",
+      "Custom Start",
+      "/usr/bin/curl",
+      "http"
+    ],
+    "envs": {
+      "SEAPACK_DEPLOY_APT_PACKAGES": "curl",
+      "SEAPACK_BUILD_APT_PACKAGES": "python3-venv",
+      "SEAPACK_PACKAGES": "pipx pipx:httpie jq",
+      "SEAPACK_INSTALL_CMD": "mkdir -p artifacts && echo \"Custom Install\" > artifacts/install.txt",
+      "SEAPACK_BUILD_CMD": "which jq && echo \"Custom Build\" > artifacts/build.txt",
+      "SEAPACK_START_CMD": "cat artifacts/install.txt && cat artifacts/build.txt && echo \"Custom Start\" && which curl && which http && which jq"
+    }
+  },
+  {
+    "expectedOutput": "Hello from a non-standard script!",
+    "envs": {
+      "SEAPACK_SHELL_SCRIPT": "run.sh"
+    }
+  },
+  {
+    "expectedOutput": [
+      "Running start.sh",
+      "Custom Install",
+      "Custom Build"
+    ],
+    "envs": {
+      "SEAPACK_INSTALL_CMD": "mkdir -p artifacts && echo \"Custom Install\" > artifacts/install.txt",
+      "SEAPACK_BUILD_CMD": "echo \"Custom Build\" > artifacts/build.txt"
+    }
+  }
+]

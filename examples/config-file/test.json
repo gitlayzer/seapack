@@ -4,15 +4,15 @@
   },
   {
     "expectedOutput": "custom start",
-    "configFile": "railpack.other.json"
+    "configFile": "seapack.other.json"
   },
   {
     "expectedOutput": "Hello via Bun",
-    "configFile": "railpack.invalid.json",
+    "configFile": "seapack.invalid.json",
     "shouldFail": true
   },
   {
-    "configFile": "railpack.malformed.json",
+    "configFile": "seapack.malformed.json",
     "shouldFail": true
   }
 ]

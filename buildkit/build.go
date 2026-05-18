@@ -12,6 +12,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/containerd/platforms"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/moby/buildkit/client"
 	_ "github.com/moby/buildkit/client/connhelper/dockercontainer"
 	_ "github.com/moby/buildkit/client/connhelper/nerdctlcontainer"
@@ -21,7 +22,6 @@ import (
 	"github.com/moby/buildkit/util/appcontext"
 	_ "github.com/moby/buildkit/util/grpcutil/encoding/proto"
 	"github.com/moby/buildkit/util/progress/progressui"
-	"github.com/railwayapp/railpack/core/plan"
 	"github.com/tonistiigi/fsutil"
 )
 
@@ -30,16 +30,16 @@ const (
 
 To start a local BuildKit daemon and set the environment variable run:
 
-	docker run --rm --privileged -d --name buildkit moby/buildkit
+	docker run --rm --privileged -d --name buildkit ghcr.io/gitlayzer/seapack-buildkit:latest
 	export BUILDKIT_HOST='docker-container://buildkit'`
 
 	buildkitInfoError = `failed to get buildkit information.
 
 Most likely the $BUILDKIT_HOST is not running. Here's an example of how to start the build container:
 
-	docker run --rm --privileged -d --name buildkit moby/buildkit
+	docker run --rm --privileged -d --name buildkit ghcr.io/gitlayzer/seapack-buildkit:latest
 
-Use 'railpack --verbose' to view more error details.
+Use 'seapack --verbose' to view more error details.
 		`
 )
 
@@ -277,7 +277,7 @@ func getImageName(appDir string) string {
 	parts := strings.Split(appDir, string(os.PathSeparator))
 	name := parts[len(parts)-1]
 	if name == "" {
-		name = "railpack-app" // Fallback if path ends in separator
+		name = "seapack-app" // Fallback if path ends in separator
 	}
 	// Docker requires image names to be lowercase
 	return strings.ToLower(name)

@@ -5,7 +5,7 @@
     // Currently causes: npm warn config production Use `--omit=dev` instead.
     "stderrAllowed": true,
     "envs": {
-      "RAILPACK_PRUNE_DEPS": "true"
+      "SEAPACK_PRUNE_DEPS": "true"
     }
   }
 ]

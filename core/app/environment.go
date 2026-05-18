@@ -57,12 +57,12 @@ func (e *Environment) SetVariable(name, value string) {
 	e.Variables[name] = value
 }
 
-// ConfigVariable returns the RAILPACK_ prefixed version of a variable name
+// ConfigVariable returns the SEAPACK_ prefixed version of a variable name
 func (e *Environment) ConfigVariable(name string) string {
-	return fmt.Sprintf("RAILPACK_%s", name)
+	return fmt.Sprintf("SEAPACK_%s", name)
 }
 
-// returns the value of a RAILPACK_ prefixed variable with newlines removed
+// returns the value of a SEAPACK_ prefixed variable with newlines removed
 // Returns both the value and the name of the config variable
 func (e *Environment) GetConfigVariable(name string) (string, string) {
 	configVar := e.ConfigVariable(name)
@@ -83,7 +83,7 @@ func (e *Environment) GetConfigVariableList(name string) ([]string, string) {
 	return strings.Split(val, " "), configVar
 }
 
-// checks if a RAILPACK_ prefixed variable is set to "1" or "true"
+// checks if a SEAPACK_ prefixed variable is set to "1" or "true"
 func (e *Environment) IsConfigVariableTruthy(name string) bool {
 	if val, _ := e.GetConfigVariable(name); val != "" {
 		lowerVal := strings.ToLower(val)

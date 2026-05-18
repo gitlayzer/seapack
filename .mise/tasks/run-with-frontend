@@ -1,15 +1,15 @@
 #!/usr/bin/env bun
 
 /**
- * Development script to test building with the Railpack BuildKit frontend.
+ * Development script to test building with the SeaPack BuildKit frontend.
  *
  * This script validates the production BuildKit frontend flow by:
- * 1. Generating a build plan using `railpack plan`
- * 2. Invoking BuildKit with the frontend container image (ghcr.io/railwayapp/railpack:railpack-frontend)
+ * 1. Generating a build plan using `seapack plan`
+ * 2. Invoking BuildKit with the frontend container image (docker.io/layzer/seapack-frontend)
  * 3. Loading the resulting image into Docker
  *
  * This is useful for testing the frontend integration locally before publishing,
- * as the frontend path is what production platforms use. The `railpack build` command
+ * as the frontend path is what production platforms use. The `seapack build` command
  * uses a different approach (direct BuildKit client) for simplicity.
  *
  * Example:
@@ -22,8 +22,8 @@ import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import crypto from "node:crypto";
 
-const PLAN_FILE = "railpack-plan.json";
-const PRODUCTION_FRONTEND_IMAGE_NAME = "ghcr.io/railwayapp/railpack:railpack-frontend";
+const PLAN_FILE = "seapack-plan.json";
+const PRODUCTION_FRONTEND_IMAGE_NAME = "docker.io/layzer/seapack-frontend";
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -37,7 +37,7 @@ const envArgs = args.slice(1).filter((arg) => arg.startsWith("--env"));
 
 // Create temp directory to save the build plan to
 const randId = Math.random().toString(36).slice(2);
-const tmpDir = join("/tmp", "railpack-" + randId);
+const tmpDir = join(process.cwd(), "tmp", "seapack-" + randId);
 const planDir = join(tmpDir, "plan");
 mkdirSync(planDir, { recursive: true });
 
@@ -56,8 +56,8 @@ process.on("SIGINT", () => {
 // Generate build plan
 console.log(`Generating build plan for ${dir}`);
 const planResult = spawnSync(
-  "go",
-  ["run", "cmd/cli/main.go", "plan", dir, ...envArgs],
+  "mise",
+  ["run", "cli", "--", "plan", dir, ...envArgs],
   {
     stdio: ["inherit", "pipe", "inherit"],
   }

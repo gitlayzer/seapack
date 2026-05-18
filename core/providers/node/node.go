@@ -8,10 +8,10 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/resolver"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/resolver"
 )
 
 type PackageManager string
@@ -145,7 +145,7 @@ func (p *NodeProvider) Plan(ctx *generate.GenerateContext) error {
 }
 
 func (p *NodeProvider) StartCommandHelp() string {
-	return "To configure your start command, Railpack will check:\n\n" +
+	return "To configure your start command, SeaPack will check:\n\n" +
 		"1. A \"start\" script in your package.json:\n" +
 		"   \"scripts\": {\n" +
 		"     \"start\": \"node index.js\"\n" +
@@ -153,7 +153,7 @@ func (p *NodeProvider) StartCommandHelp() string {
 		"2. A \"main\" field in your package.json pointing to your entry file:\n" +
 		"   \"main\": \"src/server.js\"\n\n" +
 		"3. An index.js or index.ts file in your project root\n\n" +
-		"If you have a static site, you can set the RAILPACK_SPA_OUTPUT_DIR environment variable\n" +
+		"If you have a static site, you can set the SEAPACK_SPA_OUTPUT_DIR environment variable\n" +
 		"containing the directory of your built static files."
 }
 
@@ -312,7 +312,7 @@ func (p *NodeProvider) InstallMisePackages(ctx *generate.GenerateContext, miseSt
 
 	if p.requiresBun(ctx) {
 		// there isn't a bun provider, it's mixed into the node provider
-		// users will see a message that indicates that railpack detected node, but not that bun is selected as the runtime
+		// users will see a message that indicates that seapack detected node, but not that bun is selected as the runtime
 		// let's at least add a note the plan so users understand that the bun runtime is being used.
 		ctx.Logger.LogInfo("Bun runtime detected")
 

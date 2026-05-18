@@ -7,7 +7,7 @@ import starlightPageActions from "starlight-page-actions";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://railpack.com",
+  site: "https://seapack.sealos.io",
 
   prefetch: {
     prefetchAll: true,
@@ -16,16 +16,16 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "Railpack Docs",
+      title: "SeaPack Docs",
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/railwayapp/railpack",
+          href: "https://github.com/gitlayzer/seapack",
         },
       ],
       editLink: {
-        baseUrl: "https://github.com/railwayapp/railpack/edit/main/docs/",
+        baseUrl: "https://github.com/gitlayzer/seapack/edit/main/docs/",
       },
       favicon: "/favicon.svg?v=2",
       customCss: [
@@ -37,22 +37,22 @@ export default defineConfig({
       plugins: [
         starlightPageActions(),
         starlightLlmsTxt({
-          projectName: "Railpack",
+          projectName: "SeaPack",
           description:
-            "Zero-config application builder that automatically analyzes your code and turns it into a container image. Built on BuildKit with support for Node, Python, Go, PHP, and more.",
+            "Sealos-oriented application builder that analyzes Node, Python, Go, Java, and Deno projects and turns them into container images.",
           details:
-            "Railpack provides a seamless way to build container images from your source code without complex configuration. It automatically detects your project type and generates appropriate build steps.",
+            "SeaPack provides a seamless way to build container images from your source code without complex configuration. It automatically detects your project type and generates appropriate build steps.",
           customSets: [
             {
               label: "Languages Reference",
               description:
-                "Language-specific documentation for all supported platforms",
+                "Language-specific documentation for SeaPack's supported Sealos workloads",
               paths: ["languages/**"],
             },
             {
               label: "Architecture",
               description:
-                "Technical details about Railpack's internal architecture",
+                "Technical details about SeaPack's internal architecture",
               paths: ["architecture/**"],
             },
             {
@@ -67,7 +67,7 @@ export default defineConfig({
             },
             {
               label: "Deploying",
-              description: "Deployment guides for Railway and GitHub Actions",
+              description: "Deployment guides for Sealos and GitHub Actions",
               paths: ["deploying/**"],
             },
             {
@@ -78,19 +78,19 @@ export default defineConfig({
           ],
           optionalLinks: [
             {
-              label: "Railpack GitHub Repository",
-              url: "https://github.com/railwayapp/railpack",
-              description: "Source code and issue tracking for Railpack",
+              label: "SeaPack GitHub Repository",
+              url: "https://github.com/gitlayzer/seapack",
+              description: "Source code and issue tracking for SeaPack",
             },
             {
-              label: "Railway",
-              url: "https://railway.com",
-              description: "Cloud platform that created Railpack",
+              label: "Sealos",
+              url: "https://sealos.com",
+              description: "Cloud platform targeted by SeaPack",
             },
             {
-              label: "Railway Railpack Guide",
-              url: "https://docs.railway.com/guides/build-configuration#railpack",
-              description: "How to use Railpack on Railway platform",
+              label: "Sealos SeaPack Guide",
+              url: "https://docs.sealos.com/guides/build-configuration#seapack",
+              description: "How to use SeaPack on Sealos platform",
             },
           ],
           promote: ["index*", "getting-started*", "installation*", "config/**"],
@@ -129,8 +129,8 @@ export default defineConfig({
               link: "/guides/developing-locally",
             },
             {
-              label: "Running Railpack in Production",
-              link: "/guides/running-railpack-in-production",
+              label: "Running SeaPack in Production",
+              link: "/guides/running-seapack-in-production",
             },
           ],
         },
@@ -143,7 +143,6 @@ export default defineConfig({
               link: "/config/environment-variables",
             },
             { label: "Mise", link: "/config/mise" },
-            { label: "Procfile", link: "/config/procfile" },
             { label: "Excluding Files", link: "/config/excluding-files" },
           ],
         },
@@ -153,23 +152,14 @@ export default defineConfig({
             { label: "Node", link: "/languages/node" },
             { label: "Python", link: "/languages/python" },
             { label: "Go", link: "/languages/golang" },
-            { label: "PHP", link: "/languages/php" },
             { label: "Java", link: "/languages/java" },
-            { label: "Ruby", link: "/languages/ruby" },
-            { label: "Dotnet", link: "/languages/dotnet" },
             { label: "Deno", link: "/languages/deno" },
-            { label: "Rust", link: "/languages/rust" },
-            { label: "Elixir", link: "/languages/elixir" },
-            { label: "Gleam", link: "/languages/gleam" },
-            { label: "C/C++", link: "/languages/cpp" },
-            { label: "Staticfile", link: "/languages/staticfile" },
-            { label: "Shell Scripts", link: "/languages/shell" },
           ],
         },
         {
           label: "Deploying",
           items: [
-            { label: "Railway", link: "/deploying/railway" },
+            { label: "Sealos", link: "/deploying/sealos" },
             { label: "GitHub Actions", link: "/deploying/github-actions" },
           ],
         },

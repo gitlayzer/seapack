@@ -3,7 +3,7 @@ package generate
 import (
 	"testing"
 
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/stretchr/testify/assert"
 )
 

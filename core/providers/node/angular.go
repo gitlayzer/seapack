@@ -5,7 +5,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/generate"
+	"github.com/gitlayzer/seapack/core/generate"
 )
 
 const (

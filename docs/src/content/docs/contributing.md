@@ -1,11 +1,11 @@
 ---
 title: Contributing
-description: How to contribute to Railpack
+description: How to contribute to SeaPack
 ---
 
-Railpack is [open source on GitHub](https://github.com/railwayapp/railpack).
+SeaPack is [open source on GitHub](https://github.com/gitlayzer/seapack).
 PRs are welcome. See the [contributing
-guide](https://github.com/railwayapp/railpack/blob/main/CONTRIBUTING.md) for
+guide](https://github.com/gitlayzer/seapack/blob/main/CONTRIBUTING.md) for
 more details.
 
 Check out [this guide](/guides/developing-locally) for how to set things up

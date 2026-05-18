@@ -7,7 +7,7 @@
       "path": "/",
       "expected": 200,
       "internalPort": 80,
-      "expectedOutput": "Railpack Static File"
+      "expectedOutput": "SeaPack Static File"
     }
   },
   // by default SPA mode / index fallback should not be enabled

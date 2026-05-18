@@ -9,9 +9,9 @@ tags:
 
 # Rails Starter Example
 
-This is a [Ruby on Rails](https://rubyonrails.org/) starter app that connects to a Railway Postgres database and supports [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html).
+This is a [Ruby on Rails](https://rubyonrails.org/) starter app that connects to a Sealos Postgres database and supports [Action Cable](https://guides.rubyonrails.org/action_cable_overview.html).
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/sibk1f)
+[![Deploy on Sealos](https://sealos.app/button.svg)](https://sealos.app/new/template/sibk1f)
 
 ## ✨ Features
 
@@ -22,11 +22,11 @@ This is a [Ruby on Rails](https://rubyonrails.org/) starter app that connects to
 
 ## 💁‍♀️ How to use
 
-- [Create a Railway project with the Postgres plugin](https://railway.app/project?plugins=postgresql)
-- Connect to your Railway project with `railway link`
+- [Create a Sealos project with the Postgres plugin](https://sealos.app/project?plugins=postgresql)
+- Connect to your Sealos project with `sealos link`
 - Install Ruby requirements `bundle install`
-- Migrate the database `railway run rake db:migrate`
-- Run Rails `railway run bin/rails server`
+- Migrate the database `sealos run rake db:migrate`
+- Run Rails `sealos run bin/rails server`
 
 ## 📝 Notes
 

@@ -1,8 +1,8 @@
-FROM alpine
+FROM ghcr.io/gitlayzer/seapack-alpine:latest
 
-# The railpack binary is built during the GoReleaser process, which handles the
+# The seapack binary is built during the GoReleaser process, which handles the
 # cross-platform matrix build (OS/arch). GoReleaser then automatically copies
 # the correct, pre-compiled binary into this image for each target architecture.
-COPY railpack /
+COPY seapack /
 
-ENTRYPOINT ["/railpack", "frontend"]
+ENTRYPOINT ["/seapack", "frontend"]

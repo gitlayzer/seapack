@@ -4,7 +4,7 @@
       "internalPort": 80,
       "path": "/",
       "expected": 200,
-      "expectedOutput": "Railpack Static File"
+      "expectedOutput": "SeaPack Static File"
     }
   },
   {
@@ -13,7 +13,7 @@
       "internalPort": 80,
       "path": "/nonexistent",
       "expected": 200,
-      "expectedOutput": "Railpack Static File"
+      "expectedOutput": "SeaPack Static File"
     }
   }
 ]

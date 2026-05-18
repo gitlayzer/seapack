@@ -6,8 +6,8 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/log"
+	"github.com/gitlayzer/seapack/cli"
 	"github.com/muesli/termenv"
-	"github.com/railwayapp/railpack/cli"
 	urfave "github.com/urfave/cli/v3"
 )
 
@@ -50,8 +50,8 @@ func main() {
 	}
 
 	cmd := &urfave.Command{
-		Name:                  "railpack",
-		Usage:                 "Automatically analyze and generate build plans for applications",
+		Name:                  "seapack",
+		Usage:                 "Analyze Node, Python, Go, Java, and Deno apps and build container images",
 		EnableShellCompletion: true,
 		ConfigureShellCompletionCommand: func(c *urfave.Command) {
 			c.Hidden = false
@@ -61,7 +61,7 @@ func main() {
 			&urfave.BoolFlag{
 				Name:        "verbose",
 				Usage:       "Enable verbose logging",
-				Sources:     urfave.EnvVars("RAILPACK_VERBOSE"),
+				Sources:     urfave.EnvVars("SEAPACK_VERBOSE"),
 				Value:       false,
 				Destination: &verbose,
 			},

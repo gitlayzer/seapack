@@ -5,7 +5,7 @@
     	"hello from Bun",
     ],
     "envs": {
-      "RAILPACK_NODE_VERSION": "22.22.0"
+      "SEAPACK_NODE_VERSION": "22.22.0"
     }
   }
 ]

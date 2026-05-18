@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/config"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -31,12 +31,12 @@ func TestGenerateConfigFromEnvironment(t *testing.T) {
 		{
 			name: "kitchen sink",
 			envVars: map[string]string{
-				"RAILPACK_INSTALL_CMD":         "npm install",
-				"RAILPACK_BUILD_CMD":           "npm run build",
-				"RAILPACK_START_CMD":           "npm start",
-				"RAILPACK_PACKAGES":            "node@18 python@3.9",
-				"RAILPACK_BUILD_APT_PACKAGES":  "build-essential libssl-dev",
-				"RAILPACK_DEPLOY_APT_PACKAGES": "libssl-dev",
+				"SEAPACK_INSTALL_CMD":         "npm install",
+				"SEAPACK_BUILD_CMD":           "npm run build",
+				"SEAPACK_START_CMD":           "npm start",
+				"SEAPACK_PACKAGES":            "node@18 python@3.9",
+				"SEAPACK_BUILD_APT_PACKAGES":  "build-essential libssl-dev",
+				"SEAPACK_DEPLOY_APT_PACKAGES": "libssl-dev",
 			},
 			expected: `{
 				"steps": {
@@ -71,15 +71,15 @@ func TestGenerateConfigFromEnvironment(t *testing.T) {
 					"startCommand": "npm start",
 					"aptPackages": ["libssl-dev"]
 				},
-				"secrets": ["RAILPACK_BUILD_APT_PACKAGES", "RAILPACK_BUILD_CMD", "RAILPACK_DEPLOY_APT_PACKAGES",
-					"RAILPACK_INSTALL_CMD", "RAILPACK_PACKAGES", "RAILPACK_START_CMD"]
+				"secrets": ["SEAPACK_BUILD_APT_PACKAGES", "SEAPACK_BUILD_CMD", "SEAPACK_DEPLOY_APT_PACKAGES",
+					"SEAPACK_INSTALL_CMD", "SEAPACK_PACKAGES", "SEAPACK_START_CMD"]
 			}`,
 		},
 
 		{
 			name: "unversioned packages",
 			envVars: map[string]string{
-				"RAILPACK_PACKAGES": "jq pipx:httpie@3.2.4",
+				"SEAPACK_PACKAGES": "jq pipx:httpie@3.2.4",
 			},
 			expected: `{
 				"steps": {},
@@ -89,7 +89,7 @@ func TestGenerateConfigFromEnvironment(t *testing.T) {
 				},
 				"caches": {},
 				"deploy": {},
-				"secrets": ["RAILPACK_PACKAGES"]
+				"secrets": ["SEAPACK_PACKAGES"]
 			}`,
 		},
 	}

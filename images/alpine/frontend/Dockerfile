@@ -7,9 +7,9 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o /usr/bin/railpack cmd/cli/main.go
+RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o /usr/bin/seapack cmd/cli/main.go
 
-FROM alpine
+FROM ghcr.io/gitlayzer/seapack-alpine:latest
 
-COPY --from=builder /usr/bin/railpack /usr/bin/railpack
-ENTRYPOINT ["/usr/bin/railpack", "frontend"]
+COPY --from=builder /usr/bin/seapack /usr/bin/seapack
+ENTRYPOINT ["/usr/bin/seapack", "frontend"]

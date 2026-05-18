@@ -3,8 +3,8 @@ package plan
 import (
 	"strings"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/internal/utils"
 
 	// this is the native dockerignore parser used by buildkit
 	// https://github.com/moby/buildkit/blob/master/frontend/dockerfile/dockerignore/dockerignore_deprecated.go

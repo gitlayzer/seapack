@@ -6,10 +6,10 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/resolver"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/resolver"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -123,7 +123,7 @@ func FormatBuildResult(br *BuildResult, options ...PrintOptions) string {
 }
 
 func formatHeader(output *strings.Builder, version string) {
-	header := fmt.Sprintf("Railpack %s", version)
+	header := fmt.Sprintf("SeaPack %s", version)
 	output.WriteString(headerStyle.Render(header))
 	output.WriteString("\n")
 }

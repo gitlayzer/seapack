@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/plan"
 )
 
 func buildPlan(withCache bool) *plan.BuildPlan {

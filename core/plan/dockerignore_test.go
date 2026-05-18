@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/railwayapp/railpack/core/app"
+	"github.com/gitlayzer/seapack/core/app"
 	"github.com/stretchr/testify/require"
 )
 

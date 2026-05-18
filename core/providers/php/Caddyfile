@@ -19,8 +19,8 @@
 {$CADDY_EXTRA_CONFIG}
 
 :{$PORT:80} {
-  {{if .RAILPACK_PHP_ROOT_DIR}}
-    root * {{.RAILPACK_PHP_ROOT_DIR}}
+  {{if .SEAPACK_PHP_ROOT_DIR}}
+    root * {{.SEAPACK_PHP_ROOT_DIR}}
   {{else}}
     root * /app
   {{end}}

@@ -8,13 +8,13 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	a "github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/mise"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/resolver"
-	"github.com/railwayapp/railpack/internal/utils"
+	a "github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/mise"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/resolver"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 type BuildStepOptions struct {

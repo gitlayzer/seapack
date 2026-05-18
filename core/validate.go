@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 type ValidatePlanOptions struct {
@@ -56,7 +56,7 @@ func validateStartCommand(plan *plan.BuildPlan, logger *logger.Logger, options *
 		return true
 	}
 
-	msg := "No start command detected. Specify a start command: https://railpack.com/config/file"
+	msg := "No start command detected. Specify a start command: https://seapack.sealos.io/config/file"
 	if options.ProviderToUse != nil {
 		if providerHelp := options.ProviderToUse.StartCommandHelp(); providerHelp != "" {
 			msg += "\n\n" + providerHelp
@@ -136,16 +136,16 @@ func getNoProviderError(app *app.App) string {
 	}
 
 	var errorMsg strings.Builder
-	errorMsg.WriteString("Railpack could not determine how to build the app.\n\n")
+	errorMsg.WriteString("SeaPack could not determine how to build the app.\n\n")
 	errorMsg.WriteString("The following languages are supported:\n")
 	for _, provider := range providerNames {
 		fmt.Fprintf(&errorMsg, "- %s\n", provider)
 	}
 
-	errorMsg.WriteString("\nThe app contents that Railpack analyzed contains:\n\n")
+	errorMsg.WriteString("\nThe app contents that SeaPack analyzed contains:\n\n")
 	errorMsg.WriteString(fileTree.String())
 	errorMsg.WriteString("\n")
-	errorMsg.WriteString("Check out the docs for more information: https://railpack.com")
+	errorMsg.WriteString("Check out the docs for more information: https://seapack.sealos.io")
 
 	return errorMsg.String()
 }

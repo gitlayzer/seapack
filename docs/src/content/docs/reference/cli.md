@@ -1,9 +1,9 @@
 ---
 title: CLI Reference
-description: Complete reference for the Railpack CLI commands
+description: Complete reference for the SeaPack CLI commands
 ---
 
-Complete reference documentation for all Railpack CLI commands.
+Complete reference documentation for all SeaPack CLI commands.
 
 ## Common Options
 
@@ -16,7 +16,7 @@ The following options are available across multiple commands:
 | `--build-cmd`           | Build command to use                                                                                                       |
 | `--start-cmd`           | Start command to use                                                                                                       |
 | `--config-file`         | Path to config file to use                                                                                                 |
-| `--error-missing-start` | Error if no start command is found. Enabled by default on Railway.                                                         |
+| `--error-missing-start` | Error if no start command is found. Enabled by default on Sealos.                                                         |
 
 ## Commands
 
@@ -27,7 +27,7 @@ Builds a container image from a project directory using BuildKit.
 **Usage:**
 
 ```bash
-railpack build [options] DIRECTORY
+seapack build [options] DIRECTORY
 ```
 
 **Options:**
@@ -47,14 +47,14 @@ Generates build configuration files without performing the actual build. This is
 useful for platforms that want to:
 
 - Build with a custom frontend and need to save the build plan to a
-  `railpack-plan.json` file
-- Log the Railpack pretty output to stdout
+  `seapack-plan.json` file
+- Log the SeaPack pretty output to stdout
 - Save the additional build information for later use
 
 **Usage:**
 
 ```bash
-railpack prepare [options] DIRECTORY
+seapack prepare [options] DIRECTORY
 ```
 
 **Options:**
@@ -71,7 +71,7 @@ Analyzes a directory and outputs the build plan that would be used.
 **Usage:**
 
 ```bash
-railpack plan [options] DIRECTORY
+seapack plan [options] DIRECTORY
 ```
 
 **Options:**
@@ -88,7 +88,7 @@ dependencies, and build requirements.
 **Usage:**
 
 ```bash
-railpack info [options] DIRECTORY
+seapack info [options] DIRECTORY
 ```
 
 **Options:**
@@ -100,13 +100,13 @@ railpack info [options] DIRECTORY
 
 ### schema
 
-Outputs the JSON schema for Railpack configuration files, used by IDEs for
+Outputs the JSON schema for SeaPack configuration files, used by IDEs for
 autocompletion and validation.
 
 **Usage:**
 
 ```bash
-railpack schema
+seapack schema
 ```
 
 ### completion
@@ -116,7 +116,7 @@ Generates shell completion scripts for your preferred shell.
 **Usage:**
 
 ```bash
-railpack completion [bash|zsh|fish|pwsh]
+seapack completion [bash|zsh|fish|pwsh]
 ```
 
 #### Setup
@@ -127,21 +127,21 @@ The most reliable way to enable completion is to source it directly in your shel
 Add this to your `~/.zshrc`:
 
 ```bash
-source <(railpack completion zsh)
+source <(seapack completion zsh)
 ```
 
 **Bash**
 Add this to your `~/.bashrc`:
 
 ```bash
-source <(railpack completion bash)
+source <(seapack completion bash)
 ```
 
 **Fish**
 Add this to your `~/.config/fish/config.fish`:
 
 ```fish
-railpack completion fish | source
+seapack completion fish | source
 ```
 
 #### Advanced: Zsh Plugin Managers
@@ -150,7 +150,7 @@ If you use a plugin manager like **Zinit**, you can load the completion without 
 
 ```zsh
 zinit ice wait'0'
-zinit snippet https://raw.githubusercontent.com/railwayapp/railpack/main/railpack.plugin.zsh
+zinit snippet https://raw.githubusercontent.com/gitlayzer/seapack/main/seapack.plugin.zsh
 ```
 
 ### frontend
@@ -160,7 +160,7 @@ Starts the BuildKit GRPC frontend server for internal build system use.
 **Usage:**
 
 ```bash
-railpack frontend
+seapack frontend
 ```
 
 ## Global Options

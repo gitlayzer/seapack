@@ -7,9 +7,9 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -69,7 +69,7 @@ func (p *RustProvider) Plan(ctx *generate.GenerateContext) error {
 func (p *RustProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *RustProvider) StartCommandHelp() string {
-	return "To start your Rust application, Railpack will look for:\n\n" +
+	return "To start your Rust application, SeaPack will look for:\n\n" +
 		"1. A Cargo.toml file in your project root\n\n" +
 		"Your application will be compiled to a binary and started using `./bin/<binary>`"
 }

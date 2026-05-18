@@ -8,9 +8,9 @@ import (
 
 	_ "embed"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers/node"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers/node"
 	"github.com/stretchr/objx"
 )
 
@@ -362,15 +362,15 @@ type ConfigFiles struct {
 
 func (p *PhpProvider) getConfigFiles(ctx *generate.GenerateContext) (*ConfigFiles, error) {
 	phpRootDir := "/app"
-	if variable := ctx.Env.GetVariable("RAILPACK_PHP_ROOT_DIR"); variable != "" {
+	if variable := ctx.Env.GetVariable("SEAPACK_PHP_ROOT_DIR"); variable != "" {
 		phpRootDir = variable
 	} else if p.usesLaravel(ctx) {
 		phpRootDir = "/app/public"
 	}
 
 	data := map[string]any{
-		"RAILPACK_PHP_ROOT_DIR": phpRootDir,
-		"IS_LARAVEL":            p.usesLaravel(ctx),
+		"SEAPACK_PHP_ROOT_DIR": phpRootDir,
+		"IS_LARAVEL":           p.usesLaravel(ctx),
 	}
 
 	caddyfile, err := ctx.TemplateFiles([]string{"Caddyfile"}, caddyfileTemplate, data)

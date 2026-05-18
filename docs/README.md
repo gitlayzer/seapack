@@ -1,4 +1,4 @@
-# Railpack Docs
+# SeaPack Docs
 
 The docs are built with [Starlight](https://starlight.astro.build/).
 

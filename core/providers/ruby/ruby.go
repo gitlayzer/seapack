@@ -7,10 +7,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers/node"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers/node"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -146,7 +146,7 @@ func (p *RubyProvider) GetStartCommand(ctx *generate.GenerateContext) string {
 func (p *RubyProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *RubyProvider) StartCommandHelp() string {
-	return "To start your Ruby application, Railpack will automatically:\n\n" +
+	return "To start your Ruby application, SeaPack will automatically:\n\n" +
 		"1. Start the Rails server if a Rails application is detected\n" +
 		"2. Start the Ruby server if a config/environment.rb and script/server file is found\n" +
 		"3. Start the Rack server if a config.ru file is found\n" +

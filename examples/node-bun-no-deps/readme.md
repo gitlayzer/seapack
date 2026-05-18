@@ -1,1 +1,1 @@
-https://github.com/railwayapp/railpack/issues/233
+https://github.com/gitlayzer/seapack/issues/233

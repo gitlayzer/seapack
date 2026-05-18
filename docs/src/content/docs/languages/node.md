@@ -1,9 +1,9 @@
 ---
 title: Node.js
-description: Building Node.js applications with Railpack
+description: Building Node.js applications with SeaPack
 ---
 
-Railpack builds and deploys Node.js applications with support for various
+SeaPack builds and deploys Node.js applications with support for various
 package managers and frameworks.
 
 ## Detection
@@ -15,7 +15,7 @@ exists in the root directory.
 
 The Node.js version is determined in the following order of priority:
 
-1. Set via the `RAILPACK_NODE_VERSION` environment variable
+1. Set via the `SEAPACK_NODE_VERSION` environment variable
 2. Read from the `engines.node` field in `package.json`
 3. Read from the `.nvmrc` file
 4. Read from the `.node-version` file
@@ -34,7 +34,7 @@ work but are not officially supported.
 
 The Bun version is determined in the following order:
 
-- Set via the `RAILPACK_BUN_VERSION` environment variable
+- Set via the `SEAPACK_BUN_VERSION` environment variable
 - Read from the `.bun-version` file
 - Read from the `engines.bun` field in `package.json`
 - Read from `mise.toml` or `.tool-versions` files
@@ -68,7 +68,7 @@ CI=true
 
 ## Configuration
 
-Railpack builds your Node.js application based on your project structure. The
+SeaPack builds your Node.js application based on your project structure. The
 build process:
 
 - Installs dependencies using your preferred package manager (npm, yarn, pnpm,
@@ -76,7 +76,7 @@ build process:
 - Executes the build script if defined in `package.json`
 - Sets up the start command based on your project configuration
 
-Railpack determines the start command in the following order:
+SeaPack determines the start command in the following order:
 
 1. The `start` script in `package.json`
 2. The `main` field in `package.json`
@@ -86,18 +86,18 @@ Railpack determines the start command in the following order:
 
 | Variable                         | Description                             | Example                                 |
 | -------------------------------- | --------------------------------------- | --------------------------------------- |
-| `RAILPACK_NODE_VERSION`          | Override the Node.js version            | `22`                                    |
-| `RAILPACK_BUN_VERSION`           | Override the Bun version                | `1.2`                                   |
-| `RAILPACK_NO_SPA`                | Disable SPA mode                        | `true`                                  |
-| `RAILPACK_SPA_OUTPUT_DIR`        | Directory containing built static files | `dist`                                  |
-| `RAILPACK_PRUNE_DEPS`            | Remove development dependencies         | `true`                                  |
-| `RAILPACK_NODE_PRUNE_CMD`        | Custom command to prune dependencies    | `npm prune --omit=dev --ignore-scripts` |
-| `RAILPACK_NODE_INSTALL_PATTERNS` | Custom patterns to install dependencies | `prisma`                                |
-| `RAILPACK_ANGULAR_PROJECT`       | Name of the Angular project to build    | `my-app`                                |
+| `SEAPACK_NODE_VERSION`          | Override the Node.js version            | `22`                                    |
+| `SEAPACK_BUN_VERSION`           | Override the Bun version                | `1.2`                                   |
+| `SEAPACK_NO_SPA`                | Disable SPA mode                        | `true`                                  |
+| `SEAPACK_SPA_OUTPUT_DIR`        | Directory containing built static files | `dist`                                  |
+| `SEAPACK_PRUNE_DEPS`            | Remove development dependencies         | `true`                                  |
+| `SEAPACK_NODE_PRUNE_CMD`        | Custom command to prune dependencies    | `npm prune --omit=dev --ignore-scripts` |
+| `SEAPACK_NODE_INSTALL_PATTERNS` | Custom patterns to install dependencies | `prisma`                                |
+| `SEAPACK_ANGULAR_PROJECT`       | Name of the Angular project to build    | `my-app`                                |
 
 ### Package Managers
 
-Railpack detects your package manager in the following order:
+SeaPack detects your package manager in the following order:
 
 1. **packageManager field**: Reads the `packageManager` field from
    `package.json` (uses Corepack to install the specified version)
@@ -113,14 +113,14 @@ Railpack detects your package manager in the following order:
    - `engines.yarn` for Yarn version
    - Defaults to npm if no package manager is detected
 
-When the `packageManager` field is present, Railpack will use Corepack to
+When the `packageManager` field is present, SeaPack will use Corepack to
 install the specified package manager version. When a package manager is
 detected via the `engines` field, the specified version constraint will be
 used.
 
 ### Monorepo Support
 
-Railpack automatically supports monorepo (workspaces) configurations with all major
+SeaPack automatically supports monorepo (workspaces) configurations with all major
 package managers. No special configuration is required. 
 
 **Supported Approaches:**
@@ -129,12 +129,12 @@ package managers. No special configuration is required.
 - **pnpm**: Uses `pnpm-workspace.yaml` configuration
 
 See the [examples
-folder](https://github.com/railwayapp/railpack/tree/main/examples) in the
+folder](https://github.com/gitlayzer/seapack/tree/main/examples) in the
 repository for workspace examples across different package managers (e.g.,
 `node-pnpm-workspaces`, `node-npm-workspaces`, `node-yarn-workspaces`,
 `node-bun-workspaces`).
 
-When building a monorepo, Railpack will:
+When building a monorepo, SeaPack will:
 
 - Detect workspace configurations automatically
 - Install all workspace dependencies correctly
@@ -147,23 +147,23 @@ a [config file](/architecture/user-config) to specify custom commands.
 
 ### Install
 
-Railpack will only include the necessary files to install dependencies in order
+SeaPack will only include the necessary files to install dependencies in order
 to improve cache hit rates. This includes the `package.json` and relevant lock
 files, but there are also a few additional framework specific files that are
 included if they exist in your app. This behavior is disabled if a `preinstall`
 or `postinstall` script is detected in the `package.json` file.
 
 You can include additional files or directories to include by setting the
-`RAILPACK_NODE_INSTALL_PATTERNS` environment variable. This should be a space
+`SEAPACK_NODE_INSTALL_PATTERNS` environment variable. This should be a space
 separated list of patterns to include. Patterns will automatically be prefixed
 with `**/` to match nested files and directories.
 
 ## Static Sites
 
-Railpack can serve a statically built Node project with zero config. You can
+SeaPack can serve a statically built Node project with zero config. You can
 disable this behavior by either:
 
-- Setting the `RAILPACK_NO_SPA=1` environment variable
+- Setting the `SEAPACK_NO_SPA=1` environment variable
 - Setting a custom start command
 
 These frameworks are supported:
@@ -180,19 +180,19 @@ These frameworks are supported:
   `react-router build`. To enable SPA mode, set `ssr: false` in your React
   Router config.
 
-For all frameworks, Railpack will try to detect the output directory and will
+For all frameworks, SeaPack will try to detect the output directory and will
 default to `dist` (or `build/client/` for React Router). Set the
-`RAILPACK_SPA_OUTPUT_DIR` environment variable to specify a custom output
+`SEAPACK_SPA_OUTPUT_DIR` environment variable to specify a custom output
 directory.
 
 Static sites are served using the [Caddy](https://caddyserver.com/) web server
 and a [default
-Caddyfile](https://github.com/railwayapp/railpack/blob/main/core/providers/node/Caddyfile.template).
+Caddyfile](https://github.com/gitlayzer/seapack/blob/main/core/providers/node/Caddyfile.template).
 You can overwrite this file with your own Caddyfile at the root of your project.
 
 ## Framework Support
 
-Railpack detects and configures caches and commands for popular frameworks.
+SeaPack detects and configures caches and commands for popular frameworks.
 Including:
 
 - Next.js: Caches `.next/cache` for each Next.js app in the workspace
@@ -212,9 +212,9 @@ As well as a default cache for node modules:
 ## Cache & Removing `node_modules`
 
 When you add custom build commands that remove `node_modules` (such as
-`npm ci`), Railpack automatically detects this and
+`npm ci`), SeaPack automatically detects this and
 removes the `node_modules/.cache` directory from the cache configuration for
-those steps. This prevents `EBUSY: resource busy or locked` [errors](https://github.com/railwayapp/railpack/issues/255)
+those steps. This prevents `EBUSY: resource busy or locked` [errors](https://github.com/gitlayzer/seapack/issues/255)
 that would otherwise occur when trying to remove a cached directory.
 
 This automatic handling applies to build steps that contain commands like:
@@ -228,9 +228,9 @@ commands used.
 
 ### System Dependencies
 
-Railpack automatically installs system dependencies for certain packages:
+SeaPack automatically installs system dependencies for certain packages:
 
-- **Puppeteer**: When detected in workspace dependencies, Railpack installs
+- **Puppeteer**: When detected in workspace dependencies, SeaPack installs
   all necessary system packages for running headless Chrome, including
   `xvfb`, `chromium` dependencies, and font libraries. Note that
   Puppeteer's bundled Chromium [does not support
@@ -238,5 +238,5 @@ Railpack automatically installs system dependencies for certain packages:
   to run on ARM hardware, consider switching to
   [Playwright](#system-dependencies) or implementing a custom workaround
   (e.g. installing a system Chromium and pointing `executablePath` at it).
-- **Playwright**: When detected in workspace dependencies, Railpack installs
+- **Playwright**: When detected in workspace dependencies, SeaPack installs
   the necessary system packages and the headless shell version of Chromium

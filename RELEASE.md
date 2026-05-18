@@ -1,6 +1,6 @@
 # Release Process
 
-This document outlines the process for creating new releases of Railpack.
+This document outlines the process for creating new releases of SeaPack.
 
 ## Creating a New Release
 
@@ -20,10 +20,9 @@ This document outlines the process for creating new releases of Railpack.
    ```
 
 3. The [release
-   workflow](https://github.com/railwayapp/railpack/actions/workflows/release.yml)
+   workflow](https://github.com/gitlayzer/seapack/actions/workflows/release.yml)
    will automatically:
-   - Build and publish the frontend Docker image to
-     [GHCR](https://github.com/orgs/railwayapp/packages?repo_name=railpack)
+   - Build and publish the frontend Docker image to Docker Hub
    - Create a GitHub release with changelog
    - Build and attach binaries for multiple platforms
 
@@ -39,12 +38,11 @@ git tag -d v0.18.0 && git push --delete origin v0.18.0 && git tag v0.18.0 origin
 
 ### Frontend Docker Image
 
-The frontend Docker image is published to GitHub Container Registry (GHCR) with
-the following tags:
+The frontend Docker image is published to Docker Hub with the following tags:
 
-- `ghcr.io/railpack/railpack-frontend:latest` (on default branch)
-- `ghcr.io/railpack/railpack-frontend:v1.2.3` (specific version)
-- `ghcr.io/railpack/railpack-frontend:1.2` (minor version)
+- `ghcr.io/gitlayzer/seapack-frontend:latest` (on default branch)
+- `ghcr.io/gitlayzer/seapack-frontend:v1.2.3` (specific version)
+- `ghcr.io/gitlayzer/seapack-frontend:1.2` (minor version)
 
 The image is built for both `linux/amd64` and `linux/arm64` platforms.
 
@@ -57,9 +55,9 @@ platforms to the GitHub release.
 
 After pushing a tag:
 
-1. Check the [Actions tab](https://github.com/railwayapp/railpack/actions) to
+1. Check the [Actions tab](https://github.com/gitlayzer/seapack/actions) to
    monitor the release workflow
-2. Verify the [GitHub release](https://github.com/railwayapp/railpack/releases)
+2. Verify the [GitHub release](https://github.com/gitlayzer/seapack/releases)
    is created with the correct artifacts
-3. Confirm the frontend Docker image is available in the [package
-   registry](https://github.com/railwayapp/railpack/pkgs/container/railpack-frontend)
+3. Confirm the frontend Docker image is available in Docker Hub as
+   `ghcr.io/gitlayzer/seapack-frontend`

@@ -1,4 +1,4 @@
-package com.railpack;
+package com.seapack;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

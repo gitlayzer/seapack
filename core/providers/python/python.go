@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -134,7 +134,7 @@ func (p *PythonProvider) getMainPythonFile(ctx *generate.GenerateContext) string
 func (p *PythonProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *PythonProvider) StartCommandHelp() string {
-	return "To start your Python application, Railpack will automatically:\n\n" +
+	return "To start your Python application, SeaPack will automatically:\n\n" +
 		"1. Start FastHTML projects with uvicorn\n" +
 		"2. Start FastAPI projects with uvicorn\n" +
 		"3. Start Flask projects with gunicorn\n" +

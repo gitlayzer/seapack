@@ -9,11 +9,11 @@
 	}
 
 	servers {
-		trusted_proxies static private_ranges 100.0.0.0/8 # trust railway's proxy
+		trusted_proxies static private_ranges 100.0.0.0/8 # trust sealos's proxy
 	}
 }
 
-# site block, listens on the $PORT environment variable, automatically assigned by railway
+# site block, listens on the $PORT environment variable, automatically assigned by sealos
 :{$PORT:80} {
 	log {
 		format json

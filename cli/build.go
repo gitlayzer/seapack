@@ -11,10 +11,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/railwayapp/railpack/buildkit"
-	"github.com/railwayapp/railpack/core"
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/buildkit"
+	"github.com/gitlayzer/seapack/core"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/urfave/cli/v3"
 )
 

@@ -3,7 +3,7 @@ package java
 import (
 	"strconv"
 
-	"github.com/railwayapp/railpack/core/generate"
+	"github.com/gitlayzer/seapack/core/generate"
 )
 
 const DEFAULT_JDK_VERSION = "21"

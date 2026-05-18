@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/stretchr/testify/require"
 )
 

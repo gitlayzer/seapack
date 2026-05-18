@@ -55,7 +55,7 @@ func detectAndStartCompose(examplePath string, t interface {
 	}
 
 	// Generate a unique project name and network name
-	projectName := fmt.Sprintf("railpack-test-%s", strings.ToLower(uuid.New().String()))
+	projectName := fmt.Sprintf("seapack-test-%s", strings.ToLower(uuid.New().String()))
 	networkName := projectName + composeNetworkSuffix
 
 	config := &ComposeConfig{
@@ -177,7 +177,7 @@ func runContainerWithHTTPCheck(t *testing.T, imageName string, envs map[string]s
 }
 
 func uniqueContainerName(parts ...string) string {
-	return fmt.Sprintf("railpack-test-%s", strings.Join(parts, "-"))
+	return fmt.Sprintf("seapack-test-%s", strings.Join(parts, "-"))
 }
 
 func pickFreePort() (int, error) {

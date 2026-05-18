@@ -1,9 +1,9 @@
 package build_llb
 
 import (
+	"github.com/gitlayzer/seapack/buildkit/graph"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/moby/buildkit/client/llb"
-	"github.com/railwayapp/railpack/buildkit/graph"
-	"github.com/railwayapp/railpack/core/plan"
 )
 
 type StepNode struct {

@@ -1,12 +1,12 @@
 {
  "deploy": {
   "base": {
-   "image": "ghcr.io/railwayapp/railpack-runtime:mise-2026.3.17"
+   "image": "ghcr.io/gitlayzer/seapack-runtime:mise-2026.3.17"
   },
   "inputs": [
    {
     "include": [
-     "/railpack/caddy"
+     "/seapack/caddy"
     ],
     "step": "packages:caddy"
    },
@@ -23,18 +23,18 @@
   {
    "commands": [
     {
-     "cmd": "mise install-into caddy@2.11.2 /railpack/caddy"
+     "cmd": "mise install-into caddy@2.11.2 /seapack/caddy"
     },
     {
-     "path": "/railpack/caddy"
+     "path": "/seapack/caddy"
     },
     {
-     "path": "/railpack/caddy/bin"
+     "path": "/seapack/caddy/bin"
     }
    ],
    "inputs": [
     {
-     "image": "ghcr.io/railwayapp/railpack-builder:mise-2026.3.17"
+     "image": "ghcr.io/gitlayzer/seapack-builder:mise-2026.3.17"
     }
    ],
    "name": "packages:caddy",

@@ -3,7 +3,7 @@
 {
  "deploy": {
   "base": {
-   "image": "ghcr.io/railwayapp/railpack-runtime:mise-2026.3.17"
+   "image": "ghcr.io/gitlayzer/seapack-runtime:mise-2026.3.17"
   },
   "inputs": [
    {
@@ -22,8 +22,8 @@
   }
  },
  "secrets": [
-  "RAILWAY_SECRET_1",
-  "RAILWAY_SECRET_2"
+  "SEALOS_SECRET_1",
+  "SEALOS_SECRET_2"
  ],
  "steps": [
   {
@@ -46,7 +46,7 @@
    ],
    "inputs": [
     {
-     "image": "ghcr.io/railwayapp/railpack-builder:mise-2026.3.17"
+     "image": "ghcr.io/gitlayzer/seapack-builder:mise-2026.3.17"
     }
    ],
    "name": "packages:mise",

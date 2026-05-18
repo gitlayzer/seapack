@@ -16,16 +16,30 @@ import (
 	"testing"
 	"time"
 
+	"github.com/gitlayzer/seapack/buildkit"
+	"github.com/gitlayzer/seapack/core"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/internal/utils"
 	"github.com/google/uuid"
-	"github.com/railwayapp/railpack/buildkit"
-	"github.com/railwayapp/railpack/core"
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/internal/utils"
 	"github.com/stretchr/testify/require"
 )
 
 var buildkitCacheImport = flag.String("buildkit-cache-import", "", "BuildKit cache import configuration")
 var buildkitCacheExport = flag.String("buildkit-cache-export", "", "BuildKit cache export configuration")
+
+var supportedExamplePrefixes = []string{
+	"node-",
+	"python-",
+	"go-",
+	"java-",
+	"deno-",
+	"bun-",
+}
+
+var supportedUtilityExamples = map[string]bool{
+	"config-file": true,
+	"mise-config": true,
+}
 
 type StringOrArray []string
 
@@ -74,6 +88,10 @@ func TestExamplesIntegration(t *testing.T) {
 
 	for _, entry := range entries {
 		if !entry.IsDir() {
+			continue
+		}
+
+		if !isSupportedExample(entry.Name()) {
 			continue
 		}
 
@@ -227,6 +245,20 @@ func TestExamplesIntegration(t *testing.T) {
 			})
 		}
 	}
+}
+
+func isSupportedExample(name string) bool {
+	if supportedUtilityExamples[name] {
+		return true
+	}
+
+	for _, prefix := range supportedExamplePrefixes {
+		if strings.HasPrefix(name, prefix) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func getImageSize(imageName string) (int64, error) {

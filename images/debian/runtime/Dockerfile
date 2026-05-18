@@ -1,4 +1,4 @@
-# Base image for the final runtime image created by railpack
+# Base image for the final runtime image created by seapack
 FROM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive

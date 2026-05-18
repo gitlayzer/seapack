@@ -34,7 +34,7 @@
 	<body>
 		<div>
 		  <h1>Hello World!</h1>
-		  <p>Welcome to <a href="https://github.com/railwayapp/railpack">Railpack</a>!</p>
+		  <p>Welcome to <a href="https://github.com/gitlayzer/seapack">SeaPack</a>!</p>
 		  <p><b>PHP Version:</b> <?php echo phpversion() ?></p>
 		</div>
 	</body>

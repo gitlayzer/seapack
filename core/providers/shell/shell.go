@@ -3,8 +3,8 @@ package shell
 import (
 	"errors"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
 	"mvdan.cc/sh/v3/fileutil"
 )
 
@@ -54,10 +54,10 @@ func (p *ShellProvider) Plan(ctx *generate.GenerateContext) error {
 	miseStepName := ctx.GetMiseStepBuilder().Name()
 	var buildBaseLayer plan.Layer
 
-	// If install step is configured (e.g. via RAILPACK_INSTALL_CMD) we add it so the user-supplied install config is run properly
+	// If install step is configured (e.g. via SEAPACK_INSTALL_CMD) we add it so the user-supplied install config is run properly
 	if _, ok := ctx.Config.Steps["install"]; ok {
 		install := ctx.NewCommandStep("install")
-		// Install step needs mise base to access any tools installed in the mise step (e.g. via RAILPACK_PACKAGES)
+		// Install step needs mise base to access any tools installed in the mise step (e.g. via SEAPACK_PACKAGES)
 		install.AddInput(plan.NewStepLayer(miseStepName))
 		install.AddInput(ctx.NewLocalLayer())
 

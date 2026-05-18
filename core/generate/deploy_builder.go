@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/plan"
 )
 
 type DeployBuilder struct {
@@ -15,7 +15,7 @@ type DeployBuilder struct {
 
 func NewDeployBuilder() *DeployBuilder {
 	return &DeployBuilder{
-		Base:         plan.NewImageLayer(plan.RailpackRuntimeImage),
+		Base:         plan.NewImageLayer(plan.SeaPackRuntimeImage),
 		DeployInputs: []plan.Layer{},
 		StartCmd:     "",
 		Variables:    map[string]string{},

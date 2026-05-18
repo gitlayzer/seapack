@@ -6,8 +6,8 @@ import (
 
 	semver "github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
 )
 
 const (
@@ -283,7 +283,7 @@ func (p PackageManager) GetPackageManagerPackages(ctx *generate.GenerateContext,
 			packages.Version(pnpm, pmVersion, "package.json > packageManager")
 
 			// skip installing via Mise and install with corepack instead
-			// https://github.com/railwayapp/railpack/issues/201
+			// https://github.com/gitlayzer/seapack/issues/201
 			packages.SkipMiseInstall(pnpm)
 		}
 	}
@@ -312,7 +312,7 @@ func (p PackageManager) GetPackageManagerPackages(ctx *generate.GenerateContext,
 			packages.Version(yarn, pmVersion, "package.json > packageManager")
 
 			// skip installing via Mise and install with corepack instead
-			// https://github.com/railwayapp/railpack/issues/201
+			// https://github.com/gitlayzer/seapack/issues/201
 			packages.SkipMiseInstall(yarn)
 		}
 	}

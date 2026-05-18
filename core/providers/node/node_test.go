@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/railwayapp/railpack/core/generate"
-	testingUtils "github.com/railwayapp/railpack/core/testing"
+	"github.com/gitlayzer/seapack/core/generate"
+	testingUtils "github.com/gitlayzer/seapack/core/testing"
 	"github.com/stretchr/testify/require"
 )
 

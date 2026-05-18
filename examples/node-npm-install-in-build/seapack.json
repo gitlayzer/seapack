@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.railpack.com",
+    "$schema": "https://seapack.sealos.io/schema.json",
     "steps": {
       "build": {
       	// npm ci is generally run in the install phase, running it during build causes

@@ -5,13 +5,13 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/railwayapp/railpack/core/config"
+	"github.com/gitlayzer/seapack/core/config"
 	"github.com/urfave/cli/v3"
 )
 
 var SchemaCommand = &cli.Command{
 	Name:                  "schema",
-	Usage:                 "outputs the JSON schema for the Railpack config",
+	Usage:                 "outputs the JSON schema for the SeaPack config",
 	EnableShellCompletion: true,
 	Flags:                 []cli.Flag{},
 	Action: func(ctx context.Context, cmd *cli.Command) error {

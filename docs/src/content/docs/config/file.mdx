@@ -1,10 +1,10 @@
 ---
 title: Configuration File
-description: Learn about the railpack.json configuration file format and options
+description: Learn about the seapack.json configuration file format and options
 ---
 
-Railpack will look for a `railpack.json` file in the root of the directory being
-built. You can override this by setting the `RAILPACK_CONFIG_FILE` environment
+SeaPack will look for a `seapack.json` file in the root of the directory being
+built. You can override this by setting the `SEAPACK_CONFIG_FILE` environment
 variable to a path relative to the directory being built.
 
 If found, that configuration will be used to change how the plan is built.
@@ -13,7 +13,7 @@ A config file looks something like this:
 
 ```json
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "steps": {
     "install": {
       "commands": ["npm install"]
@@ -47,7 +47,7 @@ the final image. For example, the layers of a Node build might look like this:
 ```json
 "deploy": {
   "base": {
-    "image": "ghcr.io/railwayapp/railpack-runtime:mise-2026.2.22"
+    "image": "ghcr.io/gitlayzer/seapack-runtime:mise-2026.2.22"
   },
   "inputs": [
     {
@@ -304,10 +304,10 @@ The deploy section configures how the container runs:
 
 ## Schema
 
-The schema for the config file is available at https://schema.railpack.com. Add
-it to your `railpack.json` to get autocomplete and validation in your editor.
+The schema for the config file is available at https://seapack.sealos.io/schema.json. Add
+it to your `seapack.json` to get autocomplete and validation in your editor.
 
 ```json
 {
-  "$schema": "https://schema.railpack.com"
+  "$schema": "https://seapack.sealos.io/schema.json"
 }

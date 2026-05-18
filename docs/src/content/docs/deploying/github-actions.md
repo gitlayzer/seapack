@@ -1,6 +1,8 @@
 ---
 title: GitHub Actions
-description: Deploying with Railpack using GitHub Actions
+description: Deploying with SeaPack using GitHub Actions
 ---
 
-You can use the [Railpack GitHub Action](https://github.com/iloveitaly/github-action-railpack) to build and push images using Railpack in your CI/CD pipeline.
+For Sealos-oriented CI/CD, run the SeaPack CLI in GitHub Actions, start the
+`ghcr.io/gitlayzer/seapack-buildkit` daemon, and push the resulting image to your target
+registry.

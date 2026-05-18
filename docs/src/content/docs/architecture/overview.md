@@ -1,9 +1,9 @@
 ---
 title: High Level Overview
-description: Understanding Railpack's architecture and components
+description: Understanding SeaPack's architecture and components
 ---
 
-Railpack is split up into three main components:
+SeaPack is split up into three main components:
 
 - Core
   - The main logic that analyzes the app and generates the build plan
@@ -13,7 +13,7 @@ Railpack is split up into three main components:
   - Starts a custom frontend or creates a BuildKit client to execute the build
     plan and generate an image
 - CLI
-  - The main entry point for Railpack
+  - The main entry point for SeaPack
 
 The core can be thought of as a _compiler_. The build plan that is generated is
 independent from Docker, BuildKit, or any other tool that can be used to
@@ -71,8 +71,8 @@ Steps contain:
 
 ## Providers
 
-Language support is managed through providers. Providers are typically
-associated with a single language (e.g. node, python, php, etc.). A provider
+Language support is managed through providers. SeaPack currently enables the
+Node, Python, Go, Java, and Deno providers for Sealos workloads. A provider
 will:
 
 - Detect
@@ -84,26 +84,26 @@ will:
 
 ## Docker Images
 
-Each Railpack binary has the builder and runtime image tags baked in at
+Each SeaPack binary has the builder and runtime image tags baked in at
 compile time, derived from a single pinned mise version in
 `core/mise/version.txt`:
 
-- **Builder image** (`ghcr.io/railwayapp/railpack-builder:mise-<version>`):
+- **Builder image** (`ghcr.io/gitlayzer/seapack-builder:mise-<version>`):
   used during the build process. Contains mise, common languages, and build
   tools. Not included in the final image.
-- **Runtime image** (`ghcr.io/railwayapp/railpack-runtime:mise-<version>`):
+- **Runtime image** (`ghcr.io/gitlayzer/seapack-runtime:mise-<version>`):
   a minimal Debian image used as the base for the final output image.
 
-Because the image tags are pinned to the mise version, upgrading Railpack
+Because the image tags are pinned to the mise version, upgrading SeaPack
 automatically uses the corresponding builder and runtime images. There is no
 `latest` tag ambiguity — a given binary always references the same images.
 
 If you want to use a specific builder or runtime image, you can customize the image
-references in your `railpack.json`.
+references in your `seapack.json`.
 
 ## Config
 
 The build plan can be customized through [environment
-variables](/config/environment-variables) (typically prefixed with `RAILPACK_`)
+variables](/config/environment-variables) (typically prefixed with `SEAPACK_`)
 or through a [configuration file](/config/file). The configuration is applied to
 the generate context after the providers have run.

@@ -1,46 +1,39 @@
 ---
 title: Getting Started
-description: How to get up and running with Railpack
+description: How to get up and running with SeaPack
 ---
 
 import { Aside } from '@astrojs/starlight/components';
 
-The easiest way to use Railpack is to deploy on a platform like Railway. Builds
+The easiest way to use SeaPack is to deploy on a platform like Sealos. Builds
 should work out of the box with minimal configuration. From there, you can see
-the docs for each language that Railpack supports.
+the docs for each language that SeaPack supports.
 
 - [Node](languages/node)
 - [Python](languages/python)
 - [Go](languages/golang)
-- [PHP](languages/php)
-- [HTML](languages/staticfile)
 - [Java](languages/java)
-- [Ruby](languages/ruby)
-- [Dotnet](languages/dotnet)
 - [Deno](languages/deno)
-- [Rust](languages/rust)
-- [Elixir](languages/elixir)
-- [Shell scripts](languages/shell)
 
 ---
 
-If you want to run Railpack locally, follow the steps below. Follow [this
-guide](/guides/running-railpack-in-production) if you want to run Railpack on a
+If you want to run SeaPack locally, follow the steps below. Follow [this
+guide](/guides/running-seapack-in-production) if you want to run SeaPack on a
 platform in production.
 
 ## Installation
 
-Install Railpack on Mac or Linux from GH releases ([or install with another
+Install SeaPack on Mac or Linux from GH releases ([or install with another
 method](/installation)).
 
 ```sh
-curl -sSL https://railpack.com/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/install.sh | sh
 ```
 
-Confirm that Railpack is installed correctly:
+Confirm that SeaPack is installed correctly:
 
 ```sh
-railpack --help
+seapack --help
 ```
 
 ## Help
@@ -57,12 +50,12 @@ to run a BuildKit instance as a container:
 mise run setup
 ```
 
-Now you can build your image using Railpack:
+Now you can build your image using SeaPack:
 
 ```sh
-railpack build ./path/to/project
+seapack build ./path/to/project
 ```
 
-_(there are many examples in the [Railpack
-repo](https://github.com/railwayapp/railpack/tree/main/examples) that you can
+_(there are many examples in the [SeaPack
+repo](https://github.com/gitlayzer/seapack/tree/main/examples) that you can
 test with)_

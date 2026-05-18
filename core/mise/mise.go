@@ -15,13 +15,13 @@ import (
 	"github.com/BurntSushi/toml"
 	"github.com/alexflint/go-filemutex"
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
-	InstallDir                = "/tmp/railpack/mise"
-	TestInstallDir            = "/tmp/railpack/mise-test"
-	IdiomaticVersionFileTools = "python,node,ruby,elixir,go,java,yarn"
+	InstallDir                = "/tmp/seapack/mise"
+	TestInstallDir            = "/tmp/seapack/mise-test"
+	IdiomaticVersionFileTools = "python,node,go,java,deno,yarn"
 )
 
 type Mise struct {
@@ -65,7 +65,7 @@ func (m *Mise) GetLatestVersion(pkg, version string) (string, error) {
 	output, err := m.runCmdWithEnv([]string{"MISE_NO_CONFIG=1", "MISE_PARANOID=1"}, "latest", query)
 
 	// If semver extraction fails, try with original version
-	// https://github.com/railwayapp/railpack/issues/203
+	// https://github.com/gitlayzer/seapack/issues/203
 	if (err != nil || strings.TrimSpace(output) == "") && semverVersion != version {
 		query = fmt.Sprintf("%s@%s", pkg, version)
 		output, err = m.runCmdWithEnv([]string{"MISE_NO_CONFIG=1", "MISE_PARANOID=1"}, "latest", query)
@@ -100,7 +100,7 @@ func (m *Mise) GetAllVersions(pkg, version string) ([]string, error) {
 	output, err := m.runCmdWithEnv([]string{"MISE_NO_CONFIG=1", "MISE_PARANOID=1"}, "ls-remote", query)
 
 	// If semver extraction fails, try with original version
-	// https://github.com/railwayapp/railpack/issues/203
+	// https://github.com/gitlayzer/seapack/issues/203
 	if (err != nil || strings.TrimSpace(output) == "") && semverVersion != version {
 		query = fmt.Sprintf("%s@%s", pkg, version)
 		output, err = m.runCmdWithEnv([]string{"MISE_NO_CONFIG=1", "MISE_PARANOID=1"}, "ls-remote", query)

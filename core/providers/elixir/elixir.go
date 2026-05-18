@@ -7,11 +7,11 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers/node"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers/node"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -78,7 +78,7 @@ func (p *ElixirProvider) Plan(ctx *generate.GenerateContext) error {
 func (p *ElixirProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *ElixirProvider) StartCommandHelp() string {
-	return "To start your Elixir application, Railpack will look for:\n\n" +
+	return "To start your Elixir application, SeaPack will look for:\n\n" +
 		"1. A mix.exs file in your project root\n\n" +
 		"The start command will run your application server using the generated release."
 }

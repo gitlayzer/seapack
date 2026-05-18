@@ -9,32 +9,31 @@ import (
 	"slices"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core/app"
-	c "github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/logger"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/providers"
-	"github.com/railwayapp/railpack/core/providers/procfile"
-	"github.com/railwayapp/railpack/core/resolver"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/app"
+	c "github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/logger"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/providers"
+	"github.com/gitlayzer/seapack/core/resolver"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
-	defaultConfigFileName = "railpack.json"
+	defaultConfigFileName = "seapack.json"
 )
 
 type GenerateBuildPlanOptions struct {
-	RailpackVersion          string
+	SeaPackVersion           string
 	BuildCommand             string
 	StartCommand             string
 	PreviousVersions         map[string]string
 	ConfigFilePath           string
-	ErrorMissingStartCommand bool // enabled on railway
+	ErrorMissingStartCommand bool // enabled on sealos
 }
 
 type BuildResult struct {
-	RailpackVersion   string                               `json:"railpackVersion,omitempty"`
+	SeaPackVersion    string                               `json:"seapackVersion,omitempty"`
 	Plan              *plan.BuildPlan                      `json:"plan,omitempty"`
 	ResolvedPackages  map[string]*resolver.ResolvedPackage `json:"resolvedPackages,omitempty"`
 	Metadata          map[string]string                    `json:"metadata,omitempty"`
@@ -100,15 +99,8 @@ func GenerateBuildPlan(app *app.App, env *app.Environment, options *GenerateBuil
 		}
 	}
 
-	// Run the procfile provider to support apps that have a Procfile with a start command
-	procfileProvider := &procfile.ProcfileProvider{}
-	if _, err := procfileProvider.Plan(ctx); err != nil {
-		logger.LogError("%s", err.Error())
-		return &BuildResult{Success: false, Logs: logger.Logs}
-	}
-
-	// before `Generate()` any commands provided by railpack.json are *not* merged into the provider-generated
-	// buildPlan. This means providers can't view any of the custom structure provided by the user via a railpack.json
+	// before `Generate()` any commands provided by seapack.json are *not* merged into the provider-generated
+	// buildPlan. This means providers can't view any of the custom structure provided by the user via a seapack.json
 	buildPlan, resolvedPackages, err := ctx.Generate()
 	if err != nil {
 		logger.LogError("%s", err.Error())
@@ -127,7 +119,7 @@ func GenerateBuildPlan(app *app.App, env *app.Environment, options *GenerateBuil
 	}
 
 	buildResult := &BuildResult{
-		RailpackVersion:   options.RailpackVersion,
+		SeaPackVersion:    options.SeaPackVersion,
 		Plan:              buildPlan,
 		ResolvedPackages:  resolvedPackages,
 		Metadata:          ctx.Metadata.Properties,
@@ -168,7 +160,7 @@ func GenerateConfigFromFile(app *app.App, env *app.Environment, options *Generat
 	}
 
 	// always assume config file path is relative to the app source directory
-	// https://github.com/railwayapp/railpack/pull/226
+	// https://github.com/gitlayzer/seapack/pull/226
 	absConfigFileName := filepath.Join(app.Source, configFileName)
 
 	if _, err := os.Stat(absConfigFileName); err != nil && os.IsNotExist(err) {

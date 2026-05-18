@@ -3,8 +3,8 @@ package deno
 import (
 	"fmt"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
 )
 
 const (
@@ -56,7 +56,7 @@ func (p *DenoProvider) Plan(ctx *generate.GenerateContext) error {
 func (p *DenoProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *DenoProvider) StartCommandHelp() string {
-	return "To start your Deno application, Railpack will look for:\n\n" +
+	return "To start your Deno application, SeaPack will look for:\n\n" +
 		"1. A main.ts, main.js, main.mjs, or main.mts file in your project root\n\n" +
 		"2. If no main file is found, it will use the first .ts, .js, .mjs, or .mts file found in your project\n\n" +
 		"The selected file will be run with `deno run --allow-all`"

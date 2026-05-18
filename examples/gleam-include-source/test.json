@@ -2,7 +2,7 @@
   {
     "expectedOutput": "app_gleam.gleam",
     "envs": {
-    	"RAILPACK_GLEAM_INCLUDE_SOURCE": "true"
+      "SEAPACK_GLEAM_INCLUDE_SOURCE": "true"
     }
   }
 ]

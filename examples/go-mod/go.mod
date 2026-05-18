@@ -1,4 +1,4 @@
-module github.com/railwayapp/railpack
+module github.com/gitlayzer/seapack
 
 go 1.23
 

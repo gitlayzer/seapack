@@ -13,8 +13,8 @@ if [[ "$current_branch" != "main" ]]; then
   exit 1
 fi
 
-# Pull latest changes from the canonical railpack remote
-canonical_repo="railwayapp/railpack"
+# Pull latest changes from the canonical SeaPack remote
+canonical_repo="layzer/seapack"
 canonical_url="https://github.com/$canonical_repo"
 remote_name=$(git remote -v | grep "$canonical_repo" | head -n1 | awk '{print $1}')
 

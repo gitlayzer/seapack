@@ -11,7 +11,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/bmatcuk/doublestar/v4"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/internal/utils"
 	"gopkg.in/yaml.v2"
 )
 

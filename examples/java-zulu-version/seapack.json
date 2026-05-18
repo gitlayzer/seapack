@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "provider": "java",
   "packages": {
     "java": "zulu-8.86"

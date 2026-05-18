@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
 )
 
 //go:embed Caddyfile.template
@@ -79,8 +79,8 @@ func (p *StaticfileProvider) Plan(ctx *generate.GenerateContext) error {
 func (p *StaticfileProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *StaticfileProvider) StartCommandHelp() string {
-	return "Railpack serves static files using Caddy. To configure the static file root, Railpack will check:\n\n" +
-		"1. The RAILPACK_STATIC_FILE_ROOT environment variable\n\n" +
+	return "SeaPack serves static files using Caddy. To configure the static file root, SeaPack will check:\n\n" +
+		"1. The SEAPACK_STATIC_FILE_ROOT environment variable\n\n" +
 		"2. The \"root\" field in a Staticfile in your project root:\n" +
 		"   root: dist\n\n" +
 		"3. A \"public\" directory\n\n" +

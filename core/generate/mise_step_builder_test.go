@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/railwayapp/railpack/core/resolver"
+	"github.com/gitlayzer/seapack/core/resolver"
 	"github.com/stretchr/testify/require"
 )
 

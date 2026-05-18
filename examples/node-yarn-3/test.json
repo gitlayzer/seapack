@@ -2,7 +2,7 @@
   {
     "expectedOutput": "Hello from Yarn 3.8.7",
     "envs": {
-      "RAILPACK_PRUNE_DEPS": "true"
+      "SEAPACK_PRUNE_DEPS": "true"
     }
   }
 ]

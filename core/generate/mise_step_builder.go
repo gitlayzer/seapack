@@ -10,10 +10,10 @@ import (
 	"sort"
 	"strings"
 
-	a "github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/mise"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/resolver"
+	a "github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/mise"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/resolver"
 )
 
 const (
@@ -23,7 +23,7 @@ const (
 )
 
 var (
-	RailpackBuilderImage = fmt.Sprintf("ghcr.io/railwayapp/railpack-builder:mise-%s", mise.Version)
+	SeaPackBuilderImage = fmt.Sprintf("ghcr.io/gitlayzer/seapack-builder:mise-%s", mise.Version)
 )
 
 // represents a app-local mise package
@@ -248,7 +248,7 @@ func (b *MiseStepBuilder) GetLayer() plan.Layer {
 }
 
 func (b *MiseStepBuilder) Build(p *plan.BuildPlan, options *BuildStepOptions) error {
-	baseLayer := plan.NewImageLayer(RailpackBuilderImage)
+	baseLayer := plan.NewImageLayer(SeaPackBuilderImage)
 
 	if len(b.SupportingAptPackages) > 0 {
 		aptStep := plan.NewStep("packages:apt:build")
@@ -282,7 +282,7 @@ func (b *MiseStepBuilder) Build(p *plan.BuildPlan, options *BuildStepOptions) er
 
 		// Base settings written into [settings] of the generated mise.toml so users can override with their own mise.toml
 		// Don't verify the asset because recently released versions don't have a public key to verify against
-		// https://github.com/railwayapp/railpack/issues/207
+		// https://github.com/gitlayzer/seapack/issues/207
 		b.AddMiseSetting("node.verify", false)
 		// Enforces HTTPS and stricter security
 		b.AddMiseSetting("paranoid", true)

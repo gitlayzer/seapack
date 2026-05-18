@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Repository configuration
-REPO_OWNER="railwayapp"
-REPO_NAME="railpack"
+REPO_OWNER="layzer"
+REPO_NAME="seapack"
 REPO_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 
 help_text="Options
@@ -26,7 +26,7 @@ help_text="Options
    Override the base URL used for downloading releases
 
    -r, --remove
-   Uninstall railpack
+   Uninstall seapack
 
    -h, --help
    Get some help
@@ -83,9 +83,9 @@ get_tmpfile() {
   local suffix
   suffix="$1"
   if has mktemp; then
-    printf "%s%s.%s.%s" "$(mktemp)" "-railpack" "$(date +%s)" "${suffix}"
+    printf "%s%s.%s.%s" "$(mktemp)" "-seapack" "$(date +%s)" "${suffix}"
   else
-    printf "/tmp/railpack.%s" "${suffix}"
+    printf "/tmp/seapack.%s" "${suffix}"
   fi
 }
 
@@ -122,7 +122,7 @@ download() {
 
   error "Command failed (exit code $rc): ${BLUE}${cmd}${NO_COLOR}"
   printf "\n" >&2
-  info "This is likely due to railpack not yet supporting your configuration."
+  info "This is likely due to seapack not yet supporting your configuration."
   info "If you would like to see a build for your configuration,"
   info "please create an issue requesting a build for ${MAGENTA}${TARGET}${NO_COLOR}:"
   info "${BOLD}${UNDERLINE}${REPO_URL}/issues/new/${NO_COLOR}"
@@ -176,12 +176,12 @@ install() {
 
   if test_writeable "${BIN_DIR}"; then
     sudo=""
-    msg="Installing railpack, please wait…"
+    msg="Installing seapack, please wait…"
   else
     warn "Escalated permissions are required to install to ${BIN_DIR}"
     elevate_priv
     sudo="sudo"
-    msg="Installing railpack as root, please wait…"
+    msg="Installing seapack as root, please wait…"
   fi
   info "$msg"
 
@@ -299,7 +299,7 @@ is_build_available() {
   )
 
   if [ "${good}" != "1" ]; then
-    error "${arch} builds for ${platform} are not yet available for nixpacks"
+    error "${arch} builds for ${platform} are not yet available for seapack"
     printf "\n" >&2
     info "If you would like to see a build for your configuration,"
     info "please create an issue requesting a build for ${MAGENTA}${target}${NO_COLOR}:"
@@ -313,29 +313,29 @@ UNINSTALL=0
 HELP=0
 
 # defaults
-if [ -z "${RAILPACK_VERSION-}" ]; then
-  RAILPACK_VERSION=$(curl --fail --silent --show-error ${CURL_RETRY_OPTS} ${GITHUB_TOKEN:+-H "Authorization: Bearer $GITHUB_TOKEN"} "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest" | grep -o '"tag_name": "v.*"' | cut -d'"' -f4 | cut -c2-)
+if [ -z "${SEAPACK_VERSION-}" ]; then
+  SEAPACK_VERSION=$(curl --fail --silent --show-error ${CURL_RETRY_OPTS} ${GITHUB_TOKEN:+-H "Authorization: Bearer $GITHUB_TOKEN"} "https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest" | grep -o '"tag_name": "v.*"' | cut -d'"' -f4 | cut -c2-)
 
-  if [ -z "${RAILPACK_VERSION}" ]; then
+  if [ -z "${SEAPACK_VERSION}" ]; then
     error "Failed to detect latest version from GitHub API"
-    info "You can set RAILPACK_VERSION=x.y.z to specify a version manually"
+    info "You can set SEAPACK_VERSION=x.y.z to specify a version manually"
     exit 1
   fi
 fi
 
-if [ -z "${RAILPACK_PLATFORM-}" ]; then
+if [ -z "${SEAPACK_PLATFORM-}" ]; then
   PLATFORM="$(detect_platform)"
 fi
 
-if [ -z "${RAILPACK_BIN_DIR-}" ]; then
+if [ -z "${SEAPACK_BIN_DIR-}" ]; then
   BIN_DIR=/usr/local/bin
 fi
 
-if [ -z "${RAILPACK_ARCH-}" ]; then
+if [ -z "${SEAPACK_ARCH-}" ]; then
   ARCH="$(detect_arch)"
 fi
 
-if [ -z "${RAILPACK_BASE_URL-}" ]; then
+if [ -z "${SEAPACK_BASE_URL-}" ]; then
   BASE_URL="${REPO_URL}/releases"
 fi
 
@@ -413,26 +413,26 @@ else
 fi
 
 if [ $UNINSTALL == 1 ]; then
-  confirm "Are you sure you want to uninstall railpack?"
+  confirm "Are you sure you want to uninstall seapack?"
 
   msg=""
   sudo=""
 
   if test_writeable "$(dirname "$(which ${REPO_NAME})")"; then
     sudo=""
-    msg="Removing railpack, please wait…"
+    msg="Removing seapack, please wait…"
   else
     warn "Escalated permissions are required to install to ${BIN_DIR}"
     elevate_priv
     sudo="sudo"
-    msg="Removing railpack as root, please wait…"
+    msg="Removing seapack as root, please wait…"
   fi
 
   info "$msg"
   ${sudo} rm -f "$(which ${REPO_NAME})"
   ${sudo} rm -rf /tmp/${REPO_NAME}
 
-  info "Removed railpack"
+  info "Removed seapack"
   exit 0
 fi
 
@@ -450,7 +450,7 @@ print_configuration () {
     debug "${BOLD}Bin directory${NO_COLOR}: ${GREEN}${BIN_DIR}${NO_COLOR}"
     debug "${BOLD}Platform${NO_COLOR}:      ${GREEN}${PLATFORM}${NO_COLOR}"
     debug "${BOLD}Arch${NO_COLOR}:          ${GREEN}${ARCH}${NO_COLOR}"
-    debug "${BOLD}Version${NO_COLOR}:       ${GREEN}${RAILPACK_VERSION}${NO_COLOR}"
+    debug "${BOLD}Version${NO_COLOR}:       ${GREEN}${SEAPACK_VERSION}${NO_COLOR}"
     printf '\n'
   fi
 }
@@ -462,9 +462,9 @@ if [ "${PLATFORM}" = "pc-windows-msvc" ]; then
   EXT=zip
 fi
 
-URL="${BASE_URL}/download/v${RAILPACK_VERSION}/${REPO_NAME}-v${RAILPACK_VERSION}-${TARGET}.${EXT}"
+URL="${BASE_URL}/download/v${SEAPACK_VERSION}/${REPO_NAME}-v${SEAPACK_VERSION}-${TARGET}.${EXT}"
 debug "Tarball URL: ${UNDERLINE}${BLUE}${URL}${NO_COLOR}"
-confirm "Install railpack ${GREEN}${RAILPACK_VERSION}${NO_COLOR} to ${BOLD}${GREEN}${BIN_DIR}${NO_COLOR}?"
+confirm "Install seapack ${GREEN}${SEAPACK_VERSION}${NO_COLOR} to ${BOLD}${GREEN}${BIN_DIR}${NO_COLOR}?"
 check_bin_dir "${BIN_DIR}"
 
 install "${EXT}"
@@ -479,8 +479,8 @@ cat <<'EOF'
   |_| \_\__,_|_|_| .__/ \__,_|\___|_|\_\
                   |_|
 
-  Railpack is now installed!
-  Run 'railpack --help' to get started
+  SeaPack is now installed!
+  Run 'seapack --help' to get started
 
 EOF
 printf "$NO_COLOR"

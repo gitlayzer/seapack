@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/log"
+	"github.com/gitlayzer/seapack/core"
 	"github.com/urfave/cli/v3"
 )
 
@@ -27,6 +28,10 @@ var PlanCommand = &cli.Command{
 		buildResult, _, _, err := GenerateBuildResultForCommand(cmd)
 		if err != nil {
 			return cli.Exit(err, 1)
+		}
+		if !buildResult.Success {
+			core.PrettyPrintBuildResult(buildResult, core.PrintOptions{Version: Version})
+			return cli.Exit("failed to generate build plan", 1)
 		}
 
 		// Include $schema in the generated plan JSON for editor support

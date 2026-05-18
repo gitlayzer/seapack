@@ -11,7 +11,7 @@
       "internalPort": 80,
       "path": "/",
       "expected": 200,
-      "expectedOutput": "Railpack Static File"
+      "expectedOutput": "SeaPack Static File"
     }
   }
 ]

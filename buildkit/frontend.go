@@ -1,4 +1,4 @@
-// for platforms: used by `ghcr.io/railwayapp/railpack-frontend` to accept railpack plans via BuildKit
+// for platforms: used by `ghcr.io/gitlayzer/seapack-frontend` to accept seapack plans via BuildKit
 package buildkit
 
 import (
@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/log"
+	"github.com/gitlayzer/seapack/core/plan"
 	"github.com/moby/buildkit/client/llb"
 	"github.com/moby/buildkit/exporter/containerimage/exptypes"
 	"github.com/moby/buildkit/frontend/gateway/client"
@@ -16,7 +17,6 @@ import (
 	"github.com/moby/buildkit/util/appcontext"
 	specs "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/pkg/errors"
-	"github.com/railwayapp/railpack/core/plan"
 )
 
 const (
@@ -24,8 +24,8 @@ const (
 	// This is "dockerfile" because that is commonly used for the config file mount
 	configMountName = "dockerfile"
 
-	// default filename for the serialized Railpack plan
-	defaultRailpackPlan = "railpack-plan.json"
+	// default filename for the serialized SeaPack plan
+	defaultSeaPackPlan = "seapack-plan.json"
 
 	// Build arg keys
 	secretsHash = "secrets-hash"
@@ -57,7 +57,7 @@ func Build(ctx context.Context, c client.Client) (*client.Result, error) {
 		return nil, err
 	}
 
-	plan, err := readRailpackPlan(ctx, c)
+	plan, err := readSeaPackPlan(ctx, c)
 	if err != nil {
 		return nil, err
 	}
@@ -100,22 +100,22 @@ func Build(ctx context.Context, c client.Client) (*client.Result, error) {
 	return res, nil
 }
 
-func readRailpackPlan(ctx context.Context, c client.Client) (*plan.BuildPlan, error) {
+func readSeaPackPlan(ctx context.Context, c client.Client) (*plan.BuildPlan, error) {
 	opts := c.BuildOpts().Opts
 	filename := opts["filename"]
 	if filename == "" {
-		filename = defaultRailpackPlan
+		filename = defaultSeaPackPlan
 	}
 
 	fileContents, err := readFile(ctx, c, filename)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to read railpack plan")
+		return nil, errors.Wrap(err, "failed to read seapack plan")
 	}
 
 	plan := plan.NewBuildPlan()
 	err = json.Unmarshal([]byte(fileContents), plan)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to parse railpack plan")
+		return nil, errors.Wrap(err, "failed to parse seapack plan")
 	}
 
 	return plan, nil

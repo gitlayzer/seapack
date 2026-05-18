@@ -7,13 +7,12 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core"
+	"github.com/gitlayzer/seapack/core"
 	"github.com/urfave/cli/v3"
 )
 
 var PrepareCommand = &cli.Command{
 	Name:                  "prepare",
-	Aliases:               []string{"p"},
 	Usage:                 "prepares all the files necessary for a platform to build an app with the BuildKit frontend",
 	ArgsUsage:             "DIRECTORY",
 	EnableShellCompletion: true,

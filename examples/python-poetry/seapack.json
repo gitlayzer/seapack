@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.railpack.com",
+    "$schema": "https://seapack.sealos.io/schema.json",
     "deploy": {
       // without this, `python` is used directly, running `poetry` directly could fail if it was copied
       // into the poetry venv from a previous step's binary which has since been removed from the image

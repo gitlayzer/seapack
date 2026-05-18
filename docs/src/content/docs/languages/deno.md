@@ -1,9 +1,9 @@
 ---
 title: Deno
-description: Building Deno applications with Railpack
+description: Building Deno applications with SeaPack
 ---
 
-Railpack builds and deploys Deno applications with zero configuration.
+SeaPack builds and deploys Deno applications with zero configuration.
 
 ## Detection
 
@@ -14,14 +14,14 @@ Your project will be detected as a Deno application if a `deno.json` or
 
 The Deno version is determined in the following order:
 
-- Set via the `RAILPACK_DENO_VERSION` environment variable
+- Set via the `SEAPACK_DENO_VERSION` environment variable
 - Read from mise-compatible version files (`.deno-version`,
   `.tool-versions`, `mise.toml`)
 - Defaults to `2`
 
 ## Configuration
 
-Railpack builds your Deno application based on your project structure. The build
+SeaPack builds your Deno application based on your project structure. The build
 process:
 
 - Installs Deno
@@ -40,4 +40,4 @@ The selected file will be run with `deno run --allow-all`.
 
 | Variable                | Description               | Example |
 | ----------------------- | ------------------------- | ------- |
-| `RAILPACK_DENO_VERSION` | Override the Deno version | `1.41`  |
+| `SEAPACK_DENO_VERSION` | Override the Deno version | `1.41`  |

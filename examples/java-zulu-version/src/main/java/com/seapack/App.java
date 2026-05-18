@@ -1,10 +1,10 @@
-package com.railpack;
+package com.seapack;
 
 /**
  * Hello world!
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello Railpack!");
+        System.out.println("Hello SeaPack!");
     }
 }

@@ -9,9 +9,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/railwayapp/railpack/core/generate"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core/generate"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/internal/utils"
 )
 
 const (
@@ -71,7 +71,7 @@ func (p *DotnetProvider) Plan(ctx *generate.GenerateContext) error {
 func (p *DotnetProvider) CleansePlan(buildPlan *plan.BuildPlan) {}
 
 func (p *DotnetProvider) StartCommandHelp() string {
-	return "To start your Dotnet application, Railpack will look for:\n\n" +
+	return "To start your Dotnet application, SeaPack will look for:\n\n" +
 		"1. A .csproj file in your project root\n\n" +
 		"The project will be run with `./out`"
 }

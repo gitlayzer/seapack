@@ -2,19 +2,19 @@
 // this reduces the image size considerably. Image sizes are important: performance is a feature and smaller images perform better.
 // They are easier to move around, debug, use less storage, etc. This is why we have this step in use on particular high-volume build paths.
 
-// TODO this builder is not exposed to the user right now via railpack.json
+// TODO this builder is not exposed to the user right now via seapack.json
 
 package generate
 
 import (
 	"fmt"
 
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/core/resolver"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/core/resolver"
 )
 
 const (
-	BinDir = "/railpack"
+	BinDir = "/seapack"
 )
 
 type InstallBinStepBuilder struct {
@@ -73,7 +73,7 @@ func (b *InstallBinStepBuilder) Build(p *plan.BuildPlan, options *BuildStepOptio
 		"MISE_PARANOID": "1",
 	}
 	step.Inputs = []plan.Layer{
-		plan.NewImageLayer(RailpackBuilderImage),
+		plan.NewImageLayer(SeaPackBuilderImage),
 	}
 
 	// TODO copy MISE_VERBOSE from the environment if it's set

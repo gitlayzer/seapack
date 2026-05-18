@@ -1,18 +1,18 @@
 ---
 title: Developing Locally
-description: Learn how to develop Railpack locally
+description: Learn how to develop SeaPack locally
 ---
 
-Once you've [checked out the repo](https://github.com/railwayapp/railpack), you
+Once you've [checked out the repo](https://github.com/gitlayzer/seapack), you
 can follow this to start developing locally.
 
 ## Getting Setup
 
 We use [Mise](https://mise.jdx.dev/) for managing language dependencies and
-tasks for building and testing Railpack. You don't have to use Mise, but it's
+tasks for building and testing SeaPack. You don't have to use Mise, but it's
 recommended.
 
-Install and use all versions of tools needed for Railpack
+Install and use all versions of tools needed for SeaPack
 
 ```bash
 # Assuming you are cd'd into the repo root
@@ -21,18 +21,18 @@ mise run setup
 
 This command will also start a BuildKit container (check out `mise.toml` in the root directory for more information).
 
-Use the `cli` task to run the Railpack CLI (this is like `railpack --help`)
+Use the `cli` task to run the SeaPack CLI (this is like `seapack --help`)
 
 ```bash
 mise run cli --help
 ```
 
-If you want to compile a development build of Railpack to use elsewhere on your machine:
+If you want to compile a development build of SeaPack to use elsewhere on your machine:
 
 ```bash
 mise run build
 
-# add the Railpack repo `bin/` directory to your path to use the newly-compiled Railpack on your machine
+# add the SeaPack repo `bin/` directory to your path to use the newly-compiled SeaPack on your machine
 export PATH="$PWD/bin:$PATH"
 ```
 
@@ -41,7 +41,7 @@ export PATH="$PWD/bin:$PATH"
 **👋 Requirement**: an instance of BuildKit must be running locally.
 Run `mise run setup` to start a BuildKit container.
 
-Railpack will instantiate a BuildKit client and communicate over GRPC in
+SeaPack will instantiate a BuildKit client and communicate over GRPC in
 order to build the generated LLB.
 
 ```bash
@@ -59,41 +59,41 @@ You need to have a BuildKit instance running (see below).
 
 ## Docker Images
 
-Multiple Docker images are used in Railpack:
+Multiple Docker images are used in SeaPack:
 
-* **`images/alpine/frontend/`** for the Railpack BuildKit frontend. These are simple: they include a railpack binary in a image that can be executed by the buildpack frontend. One is designed to be built for production, one is for local testing and development. These are not used by the user's application during build or runtime.
-* **`images/debian/*`:** for the Railpack build process. These are used within the buildpack exection of the railpack-generated llb.
+* **`images/alpine/frontend/`** for the SeaPack BuildKit frontend. These are simple: they include a seapack binary in a image that can be executed by the buildpack frontend. One is designed to be built for production, one is for local testing and development. These are not used by the user's application during build or runtime.
+* **`images/debian/*`:** for the SeaPack build process. These are used within the buildpack exection of the seapack-generated llb.
   * `images/debian/build` used during the llb build process. These contain common tools, languages, mise, etc that might be used during the build process. Note that all of these utilities are *not* included in the final image in order to reduce the total image size.
-  * `images/debian/runtime` a bare bones debian image used at runtime. The tools, build artifacts, etc generated during the railpack build are added to this base image.
+  * `images/debian/runtime` a bare bones debian image used at runtime. The tools, build artifacts, etc generated during the seapack build are added to this base image.
 
 ## Custom frontend
 
-You can build with a [custom BuildKit frontend](/guides/custom-frontend), but
+You can build with the [BuildKit frontend](/reference/frontend), but
 this is a bit tedious for local iteration.
 
 The frontend needs to be built into an image and accessible to the BuildKit
 instance. You can build this image locally using standard Docker commands from the root of the repository:
 
 ```bash
-docker build -f images/alpine/frontend/Dockerfile -t railpack-frontend:local .
+docker build -f images/alpine/frontend/Dockerfile -t seapack-frontend:local .
 ```
 
 Then, generate a build plan for an app:
 
 ```bash
-mise run cli plan examples/node-bun --out test/railpack-plan.json
+mise run cli plan examples/node-bun --out test/seapack-plan.json
 ```
 
 With the image you built previously, you can now run the build:
 
 ```bash
 docker buildx \
-  --build-arg BUILDKIT_SYNTAX="railpack-frontend:local" \
-  -f test/railpack-plan.json \
+  --build-arg BUILDKIT_SYNTAX="seapack-frontend:local" \
+  -f test/seapack-plan.json \
   examples/node-bun
 ```
 
-By default, `ghcr.io/railwayapp/railpack:railpack-frontend` is used when running `railpack build`.
+By default, `ghcr.io/gitlayzer/seapack-frontend` is used when running `seapack build`.
 
 You can also use the `buildctl` command to run BuildKit directly:
 
@@ -102,7 +102,7 @@ buildctl build \
   --local context=examples/node-bun \
   --local dockerfile=test \
   --frontend=gateway.v0 \
-  --opt source=ghcr.io/railwayapp/railpack:railpack-frontend \
+  --opt source=ghcr.io/gitlayzer/seapack-frontend \
   --output type=docker,name=test | docker load
 ```
 
@@ -161,8 +161,8 @@ Or with multiple strings:
 ```json
 {
   "expectedOutput": [
-    "Elixir version: 1.18",
-    "Erlang/OTP version: 27"
+    "hello from Node",
+    "Node version: 22"
   ]
 }
 ```
@@ -171,7 +171,7 @@ Or with multiple strings:
 
 You can pass environment variables to the container at runtime using the
 `envs` key. This is useful for testing with different configurations, secrets,
-or Railpack configuration variables:
+or SeaPack configuration variables:
 
 ```json
 {
@@ -183,22 +183,22 @@ or Railpack configuration variables:
 }
 ```
 
-You can also use `RAILPACK_*` configuration variables in `envs` to test
+You can also use `SEAPACK_*` configuration variables in `envs` to test
 different build configurations:
 
 ```json
 {
   "expectedOutput": "hello from Node",
   "envs": {
-    "RAILPACK_PRUNE_DEPS": "true",
-    "RAILPACK_STATIC_FILE_ROOT": "/custom/path"
+    "SEAPACK_PRUNE_DEPS": "true",
+    "SEAPACK_STATIC_FILE_ROOT": "/custom/path"
   }
 }
 ```
 
 See the [environment variables
 documentation](/config/environment-variables) for a complete list of available
-`RAILPACK_*` configuration options.
+`SEAPACK_*` configuration options.
 
 ### Services
 
@@ -219,7 +219,7 @@ Mise is absolutely central to this entire project, so you'll have to dig into th
 
 * `mise trust` state is located in `~/.local/state/mise/trusted-configs`
 * There are two mise 'environments' to keep in mind: the host environment, which uses a specific version of mise downloaded
-  just for Railpack, and the mise binary run during the build process. The mise version will be the same, but the environment
+  just for SeaPack, and the mise binary run during the build process. The mise version will be the same, but the environment
   is different.
 * If `mise tool erlang` reports a `core:` plugin it means this plugin is compiled into the mise binary and its source is available with the mise monorepo. This can be confusing since there are often open source shell-based repos available for a tool as well, but they are unused by default.
 
@@ -253,7 +253,7 @@ Here's some helpful debugging tricks:
 
 * `URFAVE_CLI_TRACING=on` for debugging CLI argument parsing
 * `mise run cli -- --verbose build --show-plan --progress plain examples/node-bun`
-* `mise run build`, add `./bin/` to your `$PATH`, and then run `railpack` in a separate local directory
+* `mise run build`, add `./bin/` to your `$PATH`, and then run `seapack` in a separate local directory
 * `docker exec buildkit buildctl prune` to clean the builder cache
 * `NO_COLOR=1`
 
@@ -312,6 +312,5 @@ There are some manual maintenance tasks that need to be done periodically:
 
 * Mise versions need to updated
 * Test snapshots which use `latest` for runtime versions need to be updated periodically.
-* Elixir<>OTP version map needs to be updated as new major versions come out.
 * Pnpm default version needs to be updated as LTS versions are released.
 * Node default version needs to be updated as LTS versions are released.

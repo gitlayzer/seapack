@@ -14,7 +14,7 @@ To add a step, you can use the `steps` field in your configuration file.
 
 ```json
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "steps": {
     "new-step": {
       "commands": ["echo 'Hello, world!'"]
@@ -39,7 +39,7 @@ inputs. For example, this will run the `new-step` after the `build` step.
 
 ```json
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "steps": {
     "new-step": {
       "inputs": [
@@ -59,7 +59,7 @@ include the `dist` directory in the final image.
 
 ```json
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "steps": {
     "new-step": {
       "commands": ["echo 'Hello, world!'"],
@@ -76,7 +76,7 @@ _Note: `deployOutputs` is syntactic sugar for adding this layer to the
 
 ```json
 {
-  "$schema": "https://schema.railpack.com",
+  "$schema": "https://seapack.sealos.io/schema.json",
   "steps": {
     "new-step": {
       "commands": ["echo 'Hello, world!'"],

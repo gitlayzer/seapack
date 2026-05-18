@@ -1,14 +1,14 @@
 ---
 title: Caching
-description: Understanding Railpack's caching mechanisms
+description: Understanding SeaPack's caching mechanisms
 ---
 
-Railpack uses both BuildKit layer and mount caches to speed up successive
+SeaPack uses both BuildKit layer and mount caches to speed up successive
 builds.
 
 ## Layer Cache
 
-Railpack takes advantage of BuildKit's layer cache and avoids busting the cache
+SeaPack takes advantage of BuildKit's layer cache and avoids busting the cache
 when possible. Cache busting events are defined in a granular way as part of the
 [steps commands list](/architecture/overview/#build-step). These include:
 

@@ -1,9 +1,9 @@
 ---
 title: Python
-description: Building Python applications with Railpack
+description: Building Python applications with SeaPack
 ---
 
-Railpack builds and deploys Python applications with support for various package managers and dependency management tools.
+SeaPack builds and deploys Python applications with support for various package managers and dependency management tools.
 
 ## Detection
 
@@ -16,14 +16,14 @@ Your project will be detected as a Python application if any of these conditions
 
 ## Versions
 
-Railpack supports Python 3.10 and later. We only officially support Python
+SeaPack supports Python 3.10 and later. We only officially support Python
 versions that are actively maintained by the Python Software Foundation (not
 EOL). See [Python release status](https://endoflife.date/python) for current
 support status.
 
 The Python version is determined in the following order:
 
-- Set via the `RAILPACK_PYTHON_VERSION` environment variable
+- Set via the `SEAPACK_PYTHON_VERSION` environment variable
 - Read from mise-compatible version files (`.python-version`,
   `.tool-versions`, `mise.toml`)
 - Read from the `runtime.txt` file
@@ -32,7 +32,7 @@ The Python version is determined in the following order:
 
 ## Precompiled vs. Compiled Python
 
-By default, Railpack installs Python using precompiled binaries via Mise.
+By default, SeaPack installs Python using precompiled binaries via Mise.
 Precompiled binaries are faster to install and more reliable, but they may not
 be available for every Python version (e.g., very new or very old releases).
 
@@ -78,7 +78,7 @@ PIP_DEFAULT_TIMEOUT=100
 
 ## Configuration
 
-Railpack builds your Python application based on your project structure. The build process:
+SeaPack builds your Python application based on your project structure. The build process:
 
 - Installs Python and required system dependencies
 - Installs project dependencies using your preferred package manager
@@ -92,7 +92,7 @@ The start command is determined by:
 
 ### Package Managers
 
-Railpack supports multiple Python package managers:
+SeaPack supports multiple Python package managers:
 
 - **pip** - Uses `requirements.txt` for dependencies
 - **poetry** - Uses `pyproject.toml` and `poetry.lock`
@@ -104,27 +104,27 @@ Railpack supports multiple Python package managers:
 
 | Variable                   | Description                 | Example      |
 | -------------------------- | --------------------------- | ------------ |
-| `RAILPACK_PYTHON_VERSION`  | Override the Python version | `3.11`       |
-| `RAILPACK_DJANGO_APP_NAME` | Django app name             | `myapp.wsgi` |
+| `SEAPACK_PYTHON_VERSION`  | Override the Python version | `3.11`       |
+| `SEAPACK_DJANGO_APP_NAME` | Django app name             | `myapp.wsgi` |
 
 ### System Dependencies
 
-Railpack installs system dependencies for common Python packages:
+SeaPack installs system dependencies for common Python packages:
 
 - **pycairo**: Installs `libcairo2-dev` (build time) and `libcairo2` (runtime)
 - **pdf2image**: Installs `poppler-utils`
 - **pydub**: Installs `ffmpeg`
 - **pymovie**: Installs `ffmpeg`, `qt5-qmake`, and related Qt packages
-- **Playwright**: When detected in dependencies, Railpack installs the necessary
+- **Playwright**: When detected in dependencies, SeaPack installs the necessary
   system packages and the headless shell version of Chromium
 
 ## Framework Support
 
-Railpack detects and configures start commands for popular frameworks:
+SeaPack detects and configures start commands for popular frameworks:
 
 ### FastHTML
 
-Railpack detects FastHTML projects when `python-fasthtml` is listed as a
+SeaPack detects FastHTML projects when `python-fasthtml` is listed as a
 dependency. When detected:
 
 - Starts with `uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}` if
@@ -132,7 +132,7 @@ dependency. When detected:
 
 ### Flask
 
-Railpack detects Flask projects when `flask` is listed as a dependency. When
+SeaPack detects Flask projects when `flask` is listed as a dependency. When
 detected:
 
 - Starts with `gunicorn --bind 0.0.0.0:${PORT:-8000} main:app` if `gunicorn`
@@ -140,27 +140,27 @@ detected:
 
 ### FastAPI
 
-Railpack detects FastAPI projects when `fastapi` is listed as a dependency.
+SeaPack detects FastAPI projects when `fastapi` is listed as a dependency.
 When detected and `uvicorn` is available as a dependency:
 
 - Starts with `uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}`
 
 ### Django
 
-Railpack detects Django projects by:
+SeaPack detects Django projects by:
 
 - Presence of `manage.py`
 - Django being listed as a dependency
 
 The start command is determined by:
 
-1. `RAILPACK_DJANGO_APP_NAME` environment variable
+1. `SEAPACK_DJANGO_APP_NAME` environment variable
 2. Scanning Python files for `WSGI_APPLICATION` setting
 3. Runs `python manage.py migrate && gunicorn {appName}:application`
 
 ### Databases
 
-Railpack automatically installs system dependencies for common databases:
+SeaPack automatically installs system dependencies for common databases:
 
 - **PostgreSQL**: Installs `libpq-dev` at build time and `libpq5` at runtime
 - **MySQL**: Installs `default-libmysqlclient-dev` at build time and `default-mysql-client` at runtime

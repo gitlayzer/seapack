@@ -5,11 +5,11 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/log"
-	"github.com/railwayapp/railpack/core"
-	a "github.com/railwayapp/railpack/core/app"
-	"github.com/railwayapp/railpack/core/config"
-	"github.com/railwayapp/railpack/core/plan"
-	"github.com/railwayapp/railpack/internal/utils"
+	"github.com/gitlayzer/seapack/core"
+	a "github.com/gitlayzer/seapack/core/app"
+	"github.com/gitlayzer/seapack/core/config"
+	"github.com/gitlayzer/seapack/core/plan"
+	"github.com/gitlayzer/seapack/internal/utils"
 	"github.com/urfave/cli/v3"
 )
 
@@ -36,7 +36,7 @@ func commonPlanFlags() []cli.Flag {
 		},
 		&cli.StringFlag{
 			Name:  "config-file",
-			Usage: "relative path to railpack config file (default: railpack.json)",
+			Usage: "relative path to seapack config file (default: seapack.json)",
 		},
 		&cli.BoolFlag{
 			Name:  "error-missing-start",
@@ -66,8 +66,8 @@ func GenerateBuildResultForCommand(cmd *cli.Command) (*core.BuildResult, *a.App,
 		return nil, nil, nil, fmt.Errorf("error creating env: %w", err)
 	}
 
-	// if --verbose is passed as a CLI global argument, enable verbose mise logging so the user don't have to understand
-	// the railpack build system deeply to get this debugging information.
+	// if --verbose is passed as a CLI global argument, enable verbose mise logging so the user doesn't have to understand
+	// the SeaPack build system deeply to get this debugging information.
 	if cmd.Bool("verbose") && env.GetVariable("MISE_VERBOSE") == "" {
 		env.SetVariable("MISE_VERBOSE", "1")
 	}
@@ -75,7 +75,7 @@ func GenerateBuildResultForCommand(cmd *cli.Command) (*core.BuildResult, *a.App,
 	previousVersions := utils.ParsePackageWithVersion(cmd.StringSlice("previous"))
 
 	generateOptions := &core.GenerateBuildPlanOptions{
-		RailpackVersion:          Version,
+		SeaPackVersion:           Version,
 		BuildCommand:             cmd.String("build-cmd"),
 		StartCommand:             cmd.String("start-cmd"),
 		PreviousVersions:         previousVersions,

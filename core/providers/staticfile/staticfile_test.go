@@ -3,7 +3,7 @@ package staticfile
 import (
 	"testing"
 
-	testingUtils "github.com/railwayapp/railpack/core/testing"
+	testingUtils "github.com/gitlayzer/seapack/core/testing"
 	"github.com/stretchr/testify/require"
 )
 
@@ -53,7 +53,7 @@ func TestGetRootDir(t *testing.T) {
 			name: "from env var",
 			path: "../../../examples/staticfile-index",
 			envVars: map[string]string{
-				"RAILPACK_STATIC_FILE_ROOT": "/custom/path",
+				"SEAPACK_STATIC_FILE_ROOT": "/custom/path",
 			},
 			want:        "/custom/path",
 			expectError: false,
@@ -62,7 +62,7 @@ func TestGetRootDir(t *testing.T) {
 			name: "trimmed env var",
 			path: "../../../examples/staticfile-index",
 			envVars: map[string]string{
-				"RAILPACK_STATIC_FILE_ROOT": "  /custom/path  ",
+				"SEAPACK_STATIC_FILE_ROOT": "  /custom/path  ",
 			},
 			want:        "/custom/path",
 			expectError: false,
@@ -71,7 +71,7 @@ func TestGetRootDir(t *testing.T) {
 			name: "blank env var falls back",
 			path: "../../../examples/staticfile-index",
 			envVars: map[string]string{
-				"RAILPACK_STATIC_FILE_ROOT": "   ",
+				"SEAPACK_STATIC_FILE_ROOT": "   ",
 			},
 			want:        ".",
 			expectError: false,

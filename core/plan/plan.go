@@ -3,14 +3,14 @@ package plan
 import (
 	"fmt"
 
-	"github.com/railwayapp/railpack/core/mise"
+	"github.com/gitlayzer/seapack/core/mise"
 )
 
 var (
-	RailpackRuntimeImage = fmt.Sprintf("ghcr.io/railwayapp/railpack-runtime:mise-%s", mise.Version)
+	SeaPackRuntimeImage = fmt.Sprintf("ghcr.io/gitlayzer/seapack-runtime:mise-%s", mise.Version)
 )
 
-// serialized to railpack.json
+// serialized to seapack.json
 type BuildPlan struct {
 	Steps   []Step            `json:"steps,omitempty"`
 	Caches  map[string]*Cache `json:"caches,omitempty"`

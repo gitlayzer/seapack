@@ -1,4 +1,4 @@
-// converts a railpack build plan to a BuildKit LLB state and image config
+// converts a seapack build plan to a BuildKit LLB state and image config
 package buildkit
 
 import (
@@ -7,11 +7,11 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/gitlayzer/seapack/buildkit/build_llb"
+	p "github.com/gitlayzer/seapack/core/plan"
 	"github.com/moby/buildkit/client/llb"
 	"github.com/moby/buildkit/util/system"
 	specs "github.com/opencontainers/image-spec/specs-go/v1"
-	"github.com/railwayapp/railpack/buildkit/build_llb"
-	p "github.com/railwayapp/railpack/core/plan"
 )
 
 type ConvertPlanOptions struct {

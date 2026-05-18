@@ -62,7 +62,7 @@ The containerized application can be deployed to any platform that supports Dock
 - Azure Container Apps
 - Digital Ocean App Platform
 - Fly.io
-- Railway
+- Sealos
 
 ### DIY Deployment
 

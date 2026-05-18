@@ -6,7 +6,7 @@ package org.example;
 public class App {
 
     public String getGreeting() {
-        return "Hello Railpack!";
+        return "Hello SeaPack!";
     }
 
     public static void main(String[] args) {
