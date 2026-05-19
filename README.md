@@ -10,9 +10,8 @@ by Sealos app workloads: Node.js, Python, Go, Java, and Deno.
 ## Getting Started
 
 ```bash
-# Install mise & seapack
-curl -sSL https://mise.run | sh
-mise install github:gitlayzer/seapack@latest
+# Install seapack on Linux amd64/arm64
+curl -sSL https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/install.sh | sh
 
 # start BuildKit container & let seapack know about it
 docker run --rm --privileged -d --name buildkit ghcr.io/gitlayzer/seapack-buildkit:latest
