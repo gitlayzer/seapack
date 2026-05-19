@@ -23,9 +23,9 @@ builds:
 archives:
   - formats: [tar.gz]
     name_template: >-
-      {{ .ProjectName }}-v{{ .Version }}-
-      {{- if eq .Arch "amd64" }}x86_64-unknown-linux-musl
-      {{- else if eq .Arch "arm64" }}arm64-unknown-linux-musl
+      {{ .ProjectName }}-linux-
+      {{- if eq .Arch "amd64" }}amd64
+      {{- else if eq .Arch "arm64" }}arm64
       {{- else }}{{ .Arch }}-{{ .Os }}{{ end }}
 
 # build a multi-arch seapack frontend image to be used by buildkit to convert a repo (and any seapack.json) into docker llb
