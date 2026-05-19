@@ -14,9 +14,19 @@ if [[ "$current_branch" != "main" ]]; then
 fi
 
 # Pull latest changes from the canonical SeaPack remote
-canonical_repo="layzer/seapack"
+canonical_repo="${PRODUCTION_GITHUB_REPOSITORY:-gitlayzer/seapack}"
 canonical_url="https://github.com/$canonical_repo"
-remote_name=$(git remote -v | grep "$canonical_repo" | head -n1 | awk '{print $1}')
+remote_name=""
+
+while read -r name url _; do
+  normalized="${url#git@github.com:}"
+  normalized="${normalized#https://github.com/}"
+  normalized="${normalized%.git}"
+  if [[ "$normalized" == "$canonical_repo" ]]; then
+    remote_name="$name"
+    break
+  fi
+done < <(git remote -v)
 
 if [[ -n "$remote_name" ]]; then
   echo "Updating from remote: $remote_name ($canonical_url)"
