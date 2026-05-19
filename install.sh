@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Repository configuration
-REPO_OWNER="layzer"
+REPO_OWNER="gitlayzer"
 REPO_NAME="seapack"
 REPO_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 
@@ -47,9 +47,7 @@ MAGENTA="$(tput setaf 5 2>/dev/null || printf '')"
 NO_COLOR="$(tput sgr0 2>/dev/null || printf '')"
 
 
-SUPPORTED_TARGETS="x86_64-apple-darwin arm64-apple-darwin \
-                  x86_64-unknown-linux-musl arm64-unknown-linux-musl \
-                  x86_64-pc-windows-msvc arm64-pc-windows-msvc"
+SUPPORTED_TARGETS="linux-amd64 linux-arm64"
 
 CURL_RETRY_OPTS="--retry 3 --retry-all-errors --retry-delay 2"
 
@@ -89,13 +87,12 @@ get_tmpfile() {
   fi
 }
 
-# Test if a location is writeable by trying to write to it. Windows does not let
-# you test writeability other than by writing: https://stackoverflow.com/q/1999988
+# Test if a location is writeable by trying to write to it.
 test_writeable() {
   local path
   path="${1:-}/test.txt"
   if touch "${path}" 2>/dev/null; then
-    rm "${path}"
+    rm -f "${path}"
     return 0
   else
     return 1
@@ -157,9 +154,7 @@ unpack() {
 elevate_priv() {
   if ! has sudo; then
     error 'Could not find the command "sudo", needed to get permissions for install.'
-    info "If you are on Windows, please run your shell as an administrator, then"
-    info "rerun this script. Otherwise, please run this script as root, or install"
-    info "sudo."
+    info "Run this script as root, install sudo, or choose a writable --bin-dir."
     exit 1
   fi
   if ! sudo -v; then
@@ -203,9 +198,7 @@ detect_platform() {
   platform="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
   case "${platform}" in
-    msys_nt*|cygwin_nt*|mingw*) platform="pc-windows-msvc" ;;
-    linux) platform="unknown-linux-musl" ;;
-    darwin) platform="apple-darwin" ;;
+    linux) platform="linux" ;;
   esac
 
   printf '%s' "${platform}"
@@ -216,22 +209,17 @@ detect_arch() {
   arch="$(uname -m | tr '[:upper:]' '[:lower:]')"
 
   case "${arch}" in
-    amd64|x86_64) printf 'x86_64' ;;
+    amd64|x86_64) printf 'amd64' ;;
     arm64|aarch64) printf 'arm64' ;;
-    *) printf 'x86_64' ;;
+    *) printf '%s' "${arch}" ;;
   esac
 }
 
 detect_target() {
   local arch="$1"
   local platform="$2"
-  local target="$arch-$platform"
 
-  if [ "${target}" = "arm-unknown-linux-musl" ]; then
-    target="${target}eabihf"
-  fi
-
-  printf '%s' "${target}"
+  printf '%s-%s' "${platform}" "${arch}"
 }
 
 
@@ -323,19 +311,27 @@ if [ -z "${SEAPACK_VERSION-}" ]; then
   fi
 fi
 
-if [ -z "${SEAPACK_PLATFORM-}" ]; then
+if [ -n "${SEAPACK_PLATFORM-}" ]; then
+  PLATFORM="${SEAPACK_PLATFORM}"
+else
   PLATFORM="$(detect_platform)"
 fi
 
-if [ -z "${SEAPACK_BIN_DIR-}" ]; then
+if [ -n "${SEAPACK_BIN_DIR-}" ]; then
+  BIN_DIR="${SEAPACK_BIN_DIR}"
+else
   BIN_DIR=/usr/local/bin
 fi
 
-if [ -z "${SEAPACK_ARCH-}" ]; then
+if [ -n "${SEAPACK_ARCH-}" ]; then
+  ARCH="${SEAPACK_ARCH}"
+else
   ARCH="$(detect_arch)"
 fi
 
-if [ -z "${SEAPACK_BASE_URL-}" ]; then
+if [ -n "${SEAPACK_BASE_URL-}" ]; then
+  BASE_URL="${SEAPACK_BASE_URL}"
+else
   BASE_URL="${REPO_URL}/releases"
 fi
 
@@ -458,11 +454,7 @@ print_configuration () {
 print_configuration
 
 EXT=tar.gz
-if [ "${PLATFORM}" = "pc-windows-msvc" ]; then
-  EXT=zip
-fi
-
-URL="${BASE_URL}/download/v${SEAPACK_VERSION}/${REPO_NAME}-v${SEAPACK_VERSION}-${TARGET}.${EXT}"
+URL="${BASE_URL}/download/v${SEAPACK_VERSION}/${REPO_NAME}-${TARGET}.${EXT}"
 debug "Tarball URL: ${UNDERLINE}${BLUE}${URL}${NO_COLOR}"
 confirm "Install seapack ${GREEN}${SEAPACK_VERSION}${NO_COLOR} to ${BOLD}${GREEN}${BIN_DIR}${NO_COLOR}?"
 check_bin_dir "${BIN_DIR}"

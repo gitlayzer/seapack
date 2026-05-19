@@ -27,18 +27,12 @@ import (
 var buildkitCacheImport = flag.String("buildkit-cache-import", "", "BuildKit cache import configuration")
 var buildkitCacheExport = flag.String("buildkit-cache-export", "", "BuildKit cache export configuration")
 
-var supportedExamplePrefixes = []string{
-	"node-",
-	"python-",
-	"go-",
-	"java-",
-	"deno-",
-	"bun-",
-}
-
-var supportedUtilityExamples = map[string]bool{
-	"config-file": true,
-	"mise-config": true,
+var supportedExampleNames = map[string]bool{
+	"node-npm":    true,
+	"python-pip":  true,
+	"go-mod":      true,
+	"java-gradle": true,
+	"deno-2":      true,
 }
 
 type StringOrArray []string
@@ -248,17 +242,7 @@ func TestExamplesIntegration(t *testing.T) {
 }
 
 func isSupportedExample(name string) bool {
-	if supportedUtilityExamples[name] {
-		return true
-	}
-
-	for _, prefix := range supportedExamplePrefixes {
-		if strings.HasPrefix(name, prefix) {
-			return true
-		}
-	}
-
-	return false
+	return supportedExampleNames[name]
 }
 
 func getImageSize(imageName string) (int64, error) {

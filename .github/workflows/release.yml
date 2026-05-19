@@ -1,5 +1,5 @@
 # checkout RELEASE.md for more information
-name: Release
+name: Build and Release
 
 on:
   push:

@@ -19,17 +19,18 @@ env:
   MISE_ENV: ci
 
 jobs:
-  # generate a JSON array of all entries in examples/ to shard out example into a separate job that can be run in parallel
+  # Keep the first-release CI surface explicit instead of inheriting every
+  # Railpack example that still exists in examples/.
   find-examples:
     runs-on: ubuntu-latest
     outputs:
       examples: ${{ steps.find-examples.outputs.examples }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
-      - name: Find examples with test.json
+      - name: Select first-release examples
         id: find-examples
         run: |
-          examples=$(find examples -name "test.json" -exec dirname {} \; | xargs -n 1 basename | grep -E '^(node-|python-|go-|java-|deno-|bun-|config-file$|mise-config$)' | jq -R -s -c 'split("\n")[:-1]')
+          examples=$(printf '%s\n' node-npm python-pip go-mod java-gradle deno-2 | jq -R -s -c 'split("\n")[:-1]')
           echo "examples=$examples" >> "$GITHUB_OUTPUT"
 
   # integration tests plan, build, and run example projects. Running the example projects requires both the builder and runtime
@@ -104,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # create a separate job for each supported entry in examples/. i.e. node-bun, python-fastapi, etc
+        # create a separate job for each first-release smoke example.
         example: ${{ fromJson(needs.find-examples.outputs.examples) }}
       fail-fast: false
 
@@ -161,8 +162,8 @@ jobs:
         if: always()
         run: docker stop buildkit
 
-  # Same as `test`, but runs on native ARM hardware to catch ARM-specific failures
-  # without QEMU emulation overhead.
+  # Same as `test`, but runs a small first-release matrix on native ARM hardware
+  # to catch architecture-specific failures without QEMU emulation overhead.
   test-arm:
     needs: [build-images, find-examples]
     runs-on: ubuntu-24.04-arm

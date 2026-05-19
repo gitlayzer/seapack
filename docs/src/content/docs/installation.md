@@ -28,7 +28,7 @@ curl -sSL https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/in
 You can also customize the version, destination, and other config options:
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/install.sh | SEAPACK_VERSION=0.2.3 sh -s -- --bin-dir ~/.local/bin
+curl -sSL https://raw.githubusercontent.com/gitlayzer/seapack/refs/heads/main/install.sh | SEAPACK_VERSION=0.0.1 sh -s -- --bin-dir ~/.local/bin
 ```
 
 ## GitHub Releases
@@ -48,9 +48,7 @@ go build -o seapack ./cmd/...
 
 ## Supported Platforms
 
-Linux and MacOS are supported.
-
-Windows builds are generated but not officially supported. That being said, PRs are welcome to fix any Windows-specific bugs.
+Linux amd64 and Linux arm64 are supported.
 
 ## Help
 
