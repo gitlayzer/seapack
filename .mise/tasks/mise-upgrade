@@ -93,7 +93,9 @@ if ! git diff --cached --quiet; then
 fi
 
 echo "Upgrading go and mise packages..."
-mise run upgrade
+# CI runs with mise locked mode enabled, but this task is responsible for
+# generating the new lockfile entries before the final locked verification.
+MISE_LOCKED=0 mise run upgrade
 if [[ -n "$(git status --porcelain go.mod go.sum)" ]]; then
   git add go.mod go.sum
   git commit -m "chore: update go, mise, and bun packages"
