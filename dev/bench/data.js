@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779163262783,
+  "lastUpdate": 1779170921771,
   "repoUrl": "https://github.com/gitlayzer/seapack",
   "entries": {
     "Benchmark": [
@@ -2797,6 +2797,78 @@ window.BENCHMARK_DATA = {
           {
             "name": "java-gradle (x86)",
             "value": 531288854,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (arm)",
+            "value": 374812112,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (x86)",
+            "value": 360607814,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (arm)",
+            "value": 427503595,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (x86)",
+            "value": 403598107,
+            "unit": "bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "18037803502@163.com",
+            "name": "gitlayzer"
+          },
+          "committer": {
+            "email": "18037803502@163.com",
+            "name": "gitlayzer"
+          },
+          "distinct": true,
+          "id": "e556d53f8007f7746f2c6c3e816b202df2baf623",
+          "message": "Fix README install instructions",
+          "timestamp": "2026-05-19T14:05:52+08:00",
+          "tree_id": "35c6cb7d6800a2f42ce874e6072a42b06add8d77",
+          "url": "https://github.com/gitlayzer/seapack/commit/e556d53f8007f7746f2c6c3e816b202df2baf623"
+        },
+        "date": 1779170920803,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "deno-2 (arm)",
+            "value": 301839223,
+            "unit": "bytes"
+          },
+          {
+            "name": "deno-2 (x86)",
+            "value": 296587002,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (arm)",
+            "value": 112224149,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (x86)",
+            "value": 89848486,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (arm)",
+            "value": 548268262,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (x86)",
+            "value": 531288856,
             "unit": "bytes"
           },
           {
