@@ -14,8 +14,6 @@ builds:
       - CGO_ENABLED=0
     goos:
       - linux
-      - windows
-      - darwin
     goarch:
       - amd64
       - arm64
@@ -26,16 +24,9 @@ archives:
   - formats: [tar.gz]
     name_template: >-
       {{ .ProjectName }}-v{{ .Version }}-
-      {{- if and (eq .Arch "amd64") (eq .Os "darwin") }}x86_64-apple-darwin
-      {{- else if and (eq .Arch "arm64") (eq .Os "darwin") }}arm64-apple-darwin
-      {{- else if and (eq .Arch "amd64") (eq .Os "linux") }}x86_64-unknown-linux-musl
-      {{- else if and (eq .Arch "arm64") (eq .Os "linux") }}arm64-unknown-linux-musl
-      {{- else if and (eq .Arch "amd64") (eq .Os "windows") }}x86_64-pc-windows-msvc
-      {{- else if and (eq .Arch "arm64") (eq .Os "windows") }}arm64-pc-windows-msvc
+      {{- if eq .Arch "amd64" }}x86_64-unknown-linux-musl
+      {{- else if eq .Arch "arm64" }}arm64-unknown-linux-musl
       {{- else }}{{ .Arch }}-{{ .Os }}{{ end }}
-    format_overrides:
-      - goos: windows
-        formats: [zip]
 
 # build a multi-arch seapack frontend image to be used by buildkit to convert a repo (and any seapack.json) into docker llb
 # the seapack build and runtime images are created separately. This image bundles the freshly compiled seapack binary
@@ -45,6 +36,7 @@ dockers:
       - "{{ .Env.PRODUCTION_FRONTEND_IMAGE_NAME }}:{{ .Tag }}-amd64"
       - "{{ .Env.PRODUCTION_FRONTEND_IMAGE_NAME }}:latest-amd64"
     use: buildx
+    goarch: amd64
     build_flag_templates:
       - "--pull"
       - "--platform=linux/amd64"
