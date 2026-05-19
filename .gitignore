@@ -46,6 +46,7 @@ build/
 tmp/
 
 examples/*/size.json
+.sesskey
 
 ### AI Tooling ###
 .claude/
