@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779170921771,
+  "lastUpdate": 1779245078754,
   "repoUrl": "https://github.com/gitlayzer/seapack",
   "entries": {
     "Benchmark": [
@@ -2879,6 +2879,76 @@ window.BENCHMARK_DATA = {
           {
             "name": "node-npm (x86)",
             "value": 360607814,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (arm)",
+            "value": 427503595,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (x86)",
+            "value": 403598107,
+            "unit": "bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "gitlayzer",
+            "email": "18037803502@163.com"
+          },
+          "committer": {
+            "name": "gitlayzer",
+            "email": "18037803502@163.com"
+          },
+          "id": "e556d53f8007f7746f2c6c3e816b202df2baf623",
+          "message": "Fix README install instructions",
+          "timestamp": "2026-05-19T06:05:52Z",
+          "url": "https://github.com/gitlayzer/seapack/commit/e556d53f8007f7746f2c6c3e816b202df2baf623"
+        },
+        "date": 1779245077761,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "deno-2 (arm)",
+            "value": 301839223,
+            "unit": "bytes"
+          },
+          {
+            "name": "deno-2 (x86)",
+            "value": 296587002,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (arm)",
+            "value": 112224157,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (x86)",
+            "value": 89848494,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (arm)",
+            "value": 548268265,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (x86)",
+            "value": 531288853,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (arm)",
+            "value": 374812120,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (x86)",
+            "value": 360607810,
             "unit": "bytes"
           },
           {
