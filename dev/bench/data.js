@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779245078754,
+  "lastUpdate": 1779247698688,
   "repoUrl": "https://github.com/gitlayzer/seapack",
   "entries": {
     "Benchmark": [
@@ -2959,6 +2959,80 @@ window.BENCHMARK_DATA = {
           {
             "name": "python-pip (x86)",
             "value": 403598107,
+            "unit": "bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "gduxintian@gmail.com",
+            "name": "ⁱⁿ",
+            "username": "gitlayzer"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "60395cbbf8bfbbf588d00a4700d7547cdccafb64",
+          "message": "chore: mise update 2026.5.12\n\nUpdate mise and dependency locks to 2026.5.12.",
+          "timestamp": "2026-05-20T11:25:08+08:00",
+          "tree_id": "5f57072c4540c13f173230c2a71db53478ff7abb",
+          "url": "https://github.com/gitlayzer/seapack/commit/60395cbbf8bfbbf588d00a4700d7547cdccafb64"
+        },
+        "date": 1779247698018,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "deno-2 (arm)",
+            "value": 301397751,
+            "unit": "bytes"
+          },
+          {
+            "name": "deno-2 (x86)",
+            "value": 297271554,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (arm)",
+            "value": 108718598,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (x86)",
+            "value": 86343121,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (arm)",
+            "value": 547826790,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (x86)",
+            "value": 531973406,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (arm)",
+            "value": 374370714,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (x86)",
+            "value": 361292424,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (arm)",
+            "value": 427062127,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (x86)",
+            "value": 404282663,
             "unit": "bytes"
           }
         ]
