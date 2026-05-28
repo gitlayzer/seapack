@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779850317641,
+  "lastUpdate": 1779935914119,
   "repoUrl": "https://github.com/gitlayzer/seapack",
   "entries": {
     "Benchmark": [
@@ -3517,6 +3517,78 @@ window.BENCHMARK_DATA = {
           {
             "name": "java-gradle (x86)",
             "value": 531973406,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (arm)",
+            "value": 374370714,
+            "unit": "bytes"
+          },
+          {
+            "name": "node-npm (x86)",
+            "value": 361292424,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (arm)",
+            "value": 427062127,
+            "unit": "bytes"
+          },
+          {
+            "name": "python-pip (x86)",
+            "value": 404282663,
+            "unit": "bytes"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "ⁱⁿ",
+            "username": "gitlayzer",
+            "email": "gduxintian@gmail.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "60395cbbf8bfbbf588d00a4700d7547cdccafb64",
+          "message": "chore: mise update 2026.5.12\n\nUpdate mise and dependency locks to 2026.5.12.",
+          "timestamp": "2026-05-20T03:25:08Z",
+          "url": "https://github.com/gitlayzer/seapack/commit/60395cbbf8bfbbf588d00a4700d7547cdccafb64"
+        },
+        "date": 1779935913685,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "deno-2 (arm)",
+            "value": 292813565,
+            "unit": "bytes"
+          },
+          {
+            "name": "deno-2 (x86)",
+            "value": 288482536,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (arm)",
+            "value": 108718598,
+            "unit": "bytes"
+          },
+          {
+            "name": "go-mod (x86)",
+            "value": 86343121,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (arm)",
+            "value": 547826793,
+            "unit": "bytes"
+          },
+          {
+            "name": "java-gradle (x86)",
+            "value": 531973407,
             "unit": "bytes"
           },
           {
